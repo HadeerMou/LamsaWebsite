@@ -3,7 +3,7 @@ import "./approach.css";
 
 function Approach() {
   return (
-    <div className="approachContainer ">
+    <div className="approachContainer">
       <div className="left">
         <h1>Our Approach</h1>
         <div className="three flex">

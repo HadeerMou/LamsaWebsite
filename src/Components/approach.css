@@ -1,5 +1,5 @@
 .approachContainer {
-  padding: 20px;
+  padding: 60px 0px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
@@ -33,6 +33,62 @@
 .approachContainer .img img {
   width: 400px;
   height: 420px;
+  border-radius: 5px;
+  box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.488);
+}
+
+/*     FEATURED      */
+.featured {
+  padding: 20px;
+}
+.featured h2 {
+  font-size: 30px;
+}
+.featured .grid {
+  padding: 30px 0px;
+}
+.grid .card .img {
+  background-color: rgba(211, 211, 211, 0.301);
+  padding: 70px 60px;
+}
+.grid .card img {
+  border-radius: 5px;
+  box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.488);
+}
+.grid .card .desc {
+  padding: 10px 0px;
+  text-align: center;
+}
+.grid .card .desc h5 {
+  font-size: 16px;
+  font-weight: bold;
+}
+.inspire {
+  padding: 40px;
+  margin-bottom: 50px;
+  align-items: center;
+}
+.inspire .text h2 {
+  font-size: 40px;
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+.inspire .text p {
+  margin-bottom: 20px;
+}
+.inspire button {
+  padding: 10px 20px;
+  background-color: rgb(163, 92, 92);
+  color: white;
+  border-radius: 5px;
+}
+.inspire .img {
+  background-color: rgba(211, 211, 211, 0.516);
+  padding: 40px;
+  border-radius: 4px;
+}
+.inspire img {
+  width: 500px;
   border-radius: 5px;
   box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.488);
 }
