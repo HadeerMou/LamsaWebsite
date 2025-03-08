@@ -1,0 +1,14 @@
+.approachContainer {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.three {
+  margin: 10px 0;
+  display: flex;
+  gap: 10px;
+}
+.part {
+  padding: 20px;
+  background-color: rgb(246, 246, 247);
+  border-radius: 8px;
+}
