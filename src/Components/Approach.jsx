@@ -29,7 +29,9 @@ function Approach() {
         </div>
       </div>
       <div className="right">
-        <div className="img"></div>
+        <div className="img">
+          <img src="assets\Untitled-1-20.jpg" alt="" />
+        </div>
       </div>
     </div>
   );
