@@ -8,18 +8,18 @@ export default function Footer() {
   const navigate = useNavigate();
   return (
     <>
-      <footer className="bg-red-300/40 shadow-2xl shadow-red-500 rounded-t-[14%]">
-        <div className="footer mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <footer className="!p-20  bg-red-300/40 shadow-2xl shadow-red-500 rounded-t-[14%]">
+        <div className="footer flex flex-col items-center mx-auto px-4 py-16 sm:px-6 lg:px-8">
           <div className="flex justify-center text-gray-700 ">
             <h1>LAMSA</h1>
           </div>
 
-          <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
+          <p className="mx-auto !mt-8 !mb-15 max-w-md text-center leading-relaxed text-gray-500">
             Your ultimate destination for exquisite paintings, featuring
             timeless classics and modern masterpieces for every art enthusiast.
           </p>
 
-          <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
+          <ul className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
             <li>
               <a
                 className="text-gray-700 transition hover:text-gray-700/75"
@@ -70,7 +70,7 @@ export default function Footer() {
             </li>
           </ul>
 
-          <ul className="mt-12 flex justify-center gap-6 md:gap-8">
+          <ul className="!mt-8 flex justify-center gap-6 md:gap-8">
             <li>
               <a
                 href="#"

@@ -32,50 +32,15 @@ export default function About({
         cart={cart}
         totalQuantity={totalQuantity}
       />
-      <Products showProducts={showProducts} />
-      <section class="aboutcontent">
-        <div class="aboutTitle">
-          <h1 class="abtit">{translations.abtit}</h1>
-        </div>
-        {isMobile ? (
-          <div className="mobvideo">
-            <video
-              width="100%"
-              height="700px"
-              autoplay="autoplay"
-              muted="muted"
-              loop="loop"
-              playsInline
-              preload="auto"
-              loading="lazy"
-            >
-              <source src="/assets/Final Comp.mp4" type="video/mp4" />
-            </video>
-          </div>
-        ) : (
-          <div className="webvideo">
-            <video autoplay="autoplay" muted="muted" loop="loop">
-              <source src="/assets/Comp 1web.mp4" />
-            </video>
-          </div>
-        )}
-        <div class="brief">
-          <h1 class="chtitle">{translations.chtitle}</h1>
-          <p class="chparagraph pt-5">{translations.chparagraph}</p>
+      <section
+        className="aboutcontent min-h-screen bg-cover bg-center"
+        style={{ backgroundImage: "url('/assets/9008 mockup.jpg')" }}
+      >
+        <div className="aboutTitle !pt-90 !p-20">
+          <h1 className="abtit !text-6xl">{translations.abtit}</h1>
         </div>
       </section>
-      <section class="visioncontent">
-        <div class="brief">
-          <h1 class="vision">{translations.vision}</h1>
-          <p class="visioncont pt-5">{translations.visioncont}</p>
-        </div>
-      </section>
-      <section class="visioncontent">
-        <div class="brief">
-          <h1 class="choose">{translations.choose}</h1>
-          <p class="choosecont">{translations.choosecont}</p>
-        </div>
-      </section>
+
       <Footer />
     </>
   );

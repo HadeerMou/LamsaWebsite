@@ -71,97 +71,151 @@ function Header({
         </a>
 
         <div className="flex flex-1 items-center justify-end md:justify-between">
-          <nav aria-label="Global" class="hidden md:block">
-            <ul className="flex items-center gap-6 text-sm">
-              <li>
-                <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
-                  href="#"
-                >
-                  {" "}
-                  About{" "}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
-                  href="#"
-                >
-                  {" "}
-                  Paintings{" "}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
-                  href="#"
-                >
-                  {" "}
-                  Curtains{" "}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
-                  href="#"
-                >
-                  {" "}
-                  Contact{" "}
-                </a>
-              </li>
-            </ul>
+          <nav className="hidden md:flex items-center gap-6">
+            <Link to="/" className="text-gray-600 hover:text-gray-800">
+              Home
+            </Link>
+            <Link to="/about" className="text-gray-600 hover:text-gray-800">
+              About
+            </Link>
+            <Link to="/paintings" className="text-gray-600 hover:text-gray-800">
+              Paintings
+            </Link>
+            <Link to="/curtains" className="text-gray-600 hover:text-gray-800">
+              Curtains
+            </Link>
+            <Link to="/contact" className="text-gray-600 hover:text-gray-800">
+              Contact
+            </Link>
           </nav>
-
-          <div className="login flex items-center gap-4">
-            <div className="sm:flex sm:gap-4">
-              <a
-                className="block rounded-md bg-red-300 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-red-700"
-                href="#"
-              >
-                Login
-              </a>
-
-              <a
-                className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:bg-gray-300/75 text-white sm:block"
-                href="#"
-              >
-                Register
-              </a>
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-4">
+              {" "}
+              {isLoggedIn ? (
+                <button
+                  className="text-gray-600 hover:text-gray-800"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link
+                    to="/user-login"
+                    className="bg-red-300 text-white !px-5 !py-2 rounded-md hover:bg-red-700"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="bg-gray-100 text-gray-700 !px-5 !py-2 rounded-md hover:bg-gray-300"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
-            <div className="sm:flex sm:gap-3 text-3xl text-red-300 icons">
-              <FaUserCircle
-                className="cursor-pointer"
-                onClick={() => navigate("/profile")}
-              />
-              <CiShoppingCart
-                className="cursor-pointer"
-                onClick={toggleCartVisibility}
-              />
-            </div>
-
-            <button className="block rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
-              <span className="sr-only">Toggle menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="size-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+            <FaUserCircle
+              className="text-3xl text-red-300 cursor-pointer"
+              onClick={() => navigate("/profile")}
+            />
+            <CiShoppingCart
+              className="text-3xl text-red-300 cursor-pointer"
+              onClick={toggleCartVisibility}
+            />
           </div>
+
+          <button
+            className="flex md:hidden !p-2 text-gray-600 rounded-sm"
+            onClick={() => setOpen(!open)}
+          >
+            <span className="sr-only">Toggle menu</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
         </div>
       </div>
+      {open && (
+        <div className="md:hidden bg-white shadow-lg absolute top-16 left-0 w-full flex flex-col items-center !py-4 !space-y-4 z-50">
+          <Link
+            to="/"
+            className="text-gray-600 hover:text-gray-800"
+            onClick={() => setOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className="text-gray-600 hover:text-gray-800"
+            onClick={() => setOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            to="/paintings"
+            className="text-gray-600 hover:text-gray-800"
+            onClick={() => setOpen(false)}
+          >
+            Paintings
+          </Link>
+          <Link
+            to="/curtains"
+            className="text-gray-600 hover:text-gray-800"
+            onClick={() => setOpen(false)}
+          >
+            Curtains
+          </Link>
+          <Link
+            to="/contact"
+            className="text-gray-600 hover:text-gray-800"
+            onClick={() => setOpen(false)}
+          >
+            Contact
+          </Link>
+
+          {/* Mobile Login/Register or Logout */}
+          {isLoggedIn ? (
+            <button
+              className="text-gray-600 hover:text-gray-800"
+              onClick={() => {
+                handleLogout();
+                setOpen(false);
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link
+                to="/user-login"
+                className="bg-red-300 text-white !px-4 !py-1 rounded-md hover:bg-red-700"
+                onClick={() => setOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="bg-gray-100 text-gray-700 !px-4 !py-1 rounded-md hover:bg-gray-300"
+                onClick={() => setOpen(false)}
+              >
+                Register
+              </Link>
+            </>
+          )}
+        </div>
+      )}
     </header>
   );
 }

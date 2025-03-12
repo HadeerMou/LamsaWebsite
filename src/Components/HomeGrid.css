@@ -2,32 +2,6 @@
   padding: 0;
   margin: 0;
 }
-.images {
-  background-color: red;
-  width: 100%;
-  position: relative;
-}
-
-.images img {
-  width: 100%;
-}
-.headcontainer {
-  padding: 40px 20px;
-}
-.intro {
-  position: absolute;
-  text-align: center;
-  top: 30%;
-  width: 100%;
-  height: 100px;
-  margin: 20px;
-}
-.intro h1 {
-  font-size: 40px;
-  font-weight: bold;
-  color: rgba(37, 37, 37, 0.882);
-  margin-bottom: 20px;
-}
 .intro p {
   max-width: 55ch;
   margin: auto auto;
