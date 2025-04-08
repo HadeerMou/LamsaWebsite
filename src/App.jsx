@@ -34,12 +34,11 @@ import CategoryPage from "./Pages/categoryPage";
 import OrderSuccess from "./Pages/OrderSuccess";
 import UserAddresses from "./Pages/userAddresses";
 import Profile2 from "./Pages/profile2";
-import Landing from "./Pages/Landing";
 
 function App() {
   const API_BASE_URL = import.meta.env.VITE_API_URL;
-  const [isMobile, setIsMobile] = useState(false);
-  const navigate = useNavigate();
+  /*   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate(); */
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]); // State for cart items
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -49,7 +48,7 @@ function App() {
     0
   );
 
-  useEffect(() => {
+  /* useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.matchMedia("(max-width: 1024px)").matches); // Tailwind's `lg` breakpoint
     };
@@ -67,7 +66,7 @@ function App() {
     if (isMobile && location.pathname === "/") {
       navigate("/landing"); // Redirect to the Landing page
     }
-  }, [isMobile, location.pathname, navigate]);
+  }, [isMobile, location.pathname, navigate]); */
 
   // Toggle cart visibility
   const toggleCartVisibility = () => {
@@ -133,7 +132,8 @@ function App() {
       <TranslationProvider>
         <Routes>
           <Route path="/profile2" element={<Profile2 />} />
-          <Route path="/landing" element={<Landing />} />
+          {/*           <Route path="/landing" element={<Landing />} />
+           */}{" "}
           <Route
             path="/"
             element={
@@ -201,7 +201,6 @@ function App() {
               />
             }
           />
-
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/products" element={<Dshproducts />} />
           <Route path="/dashboard/messages/chat" element={<DshChat />} />

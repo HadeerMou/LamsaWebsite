@@ -31,7 +31,9 @@ export default function About({ toggleCartVisibility, cart, totalQuantity }) {
         style={{ backgroundImage: "url('/assets/9008 mockup.jpg')" }}
       >
         <div className="aboutTitle !pt-100 !p-20">
-          <h1 className="abtit !text-5xl text-white lg:text-">{translations.abtit}</h1>
+          <h1 className="abtit !text-5xl text-white lg:text-gray-800">
+            {translations.abtit}
+          </h1>
           <p className="!mt-14 text-lg max-w-3xl">{translations.intro}</p>
         </div>
       </section>

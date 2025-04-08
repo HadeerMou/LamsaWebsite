@@ -14,10 +14,10 @@ export default function HomeGrid() {
           />
         </div>
         <div className=" absolute top-1/4 sm:top-1/3 text-center w-full px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black/70 mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black/70 !mt-4">
             {translations.lamsa}
           </h1>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg max-w-[55ch] sm:max-w-[400px] md:max-w-[510px] !mx-auto">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg max-w-[200px] !mt-6 sm:max-w-[400px] md:max-w-[510px] !mx-auto">
             {translations.brief}
           </p>
         </div>

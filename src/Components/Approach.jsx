@@ -7,7 +7,9 @@ function Approach() {
   return (
     <div className="flex flex-wrap approachContainer !p-7 justify-around items-center">
       <div className="left">
-        <h1 className="!mb-[5rem] !text-4xl">{translations.ourapproach}</h1>
+        <h1 className="!mb-[5rem] text-lg sm:text-xl md:text-3xl lg:text-4xl">
+          {translations.ourapproach}
+        </h1>
         <div className="three flex flex-wrap !sm:flex-col gap-3">
           <div className="part bg-black/1 !p-[50px] !sm:p-8 rounded-[5px] !border-l !border-[rgba(0, 0, 0, 0.44)]">
             <i class="fa-solid fa-truck-fast"></i>
