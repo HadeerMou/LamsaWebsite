@@ -51,7 +51,7 @@ function Signup({ handleVerifyOtp }) {
   return (
     <div className="relative flex flex-col min-h-screen">
       {/* Mobile Design: Background Image */}
-      <div className="absolute top-0 left-0 w-full h-1/3 sm:h-1/2 lg:hidden">
+      <div className="absolute !top-0 left-0 w-full !h-1/3 sm:h-1/2 lg:hidden">
         <img
           className="w-full h-full object-cover"
           src="\assets\Untitled-1-25.jpg"
@@ -71,41 +71,41 @@ function Signup({ handleVerifyOtp }) {
           <h1 className="text-3xl font-bold !mb-4">Welcome to LAMSA</h1>
           <h2 className="text-xl font-bold !mb-6">Sign up</h2>
           <form onSubmit={handleSubmit} className="w-full">
-            <label className="block font-bold mb-2" htmlFor="username">
+            <label className="block font-bold !mb-2" htmlFor="username">
               Username
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+              className="bg-transparent !border !border-black/50 rounded-md !mb-5 !p-3 w-full"
               type="text"
               name="username"
               onChange={handleChange}
               placeholder="username"
             />
-            <label className="block font-bold mb-2" htmlFor="email">
+            <label className="block font-bold !mb-2" htmlFor="email">
               Email
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+              className="bg-transparent !border !border-black/50 rounded-md !mb-5 !p-3 w-full"
               type="text"
               name="email"
               onChange={handleChange}
               placeholder="email@example.com"
             />
-            <label className="block font-bold mb-2" htmlFor="password">
+            <label className="block font-bold !mb-2" htmlFor="password">
               Password
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+              className="bg-transparent !border !border-black/50 rounded-md !mb-5 !p-3 w-full"
               type="text"
               name="password"
               onChange={handleChange}
               placeholder="At least 6 characters"
             />
-            <label className="block font-bold mb-2" htmlFor="phone">
+            <label className="block font-bold !mb-2" htmlFor="phone">
               Phone number
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+              className="bg-transparent !border !border-black/50 rounded-md !mb-5 !p-3 w-full"
               type="text"
               name="phone"
               onChange={handleChange}
@@ -133,47 +133,47 @@ function Signup({ handleVerifyOtp }) {
         </div>
       </div>
       {/* Mobile Design: Sign-up Form */}
-      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-10 !py-12 !sm:p-10 w-full mx-auto lg:hidden">
+      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !p-10 !sm:p-10 w-full mx-auto lg:hidden">
         <h1 className="text-center text-2xl font-bold !mb-4">
           Welcome to LAMSA
         </h1>
         <h2 className="text-center text-lg font-bold !mb-6">Sign up</h2>
         <form onSubmit={handleSubmit}>
-          <label className="block font-bold mb-2" htmlFor="username">
+          <label className="block font-bold !mb-1" htmlFor="username">
             Username
           </label>
           <input
-            className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+            className="input bg-transparent !border !border-black/50 rounded-md !mb-3 !p-2 w-full"
             type="text"
             name="username"
             onChange={handleChange}
             placeholder="username"
           />
-          <label className="block font-bold mb-2" htmlFor="email">
+          <label className="block font-bold !mb-1" htmlFor="email">
             Email
           </label>
           <input
-            className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+            className="input bg-transparent !border !border-black/50 rounded-md !mb-3 !p-2 w-full"
             type="text"
             name="email"
             onChange={handleChange}
             placeholder="email@example.com"
           />
-          <label className="block font-bold mb-2" htmlFor="password">
+          <label className="block font-bold !mb-1" htmlFor="password">
             Password
           </label>
           <input
-            className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+            className="input bg-transparent !border !border-black/50 rounded-md !mb-3 !p-2 w-full"
             type="text"
             name="password"
             onChange={handleChange}
             placeholder="At least 6 characters"
           />
-          <label className="block font-bold mb-2" htmlFor="phone">
+          <label className="block font-bold !mb-1" htmlFor="phone">
             Phone number
           </label>
           <input
-            className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+            className="input bg-transparent !border !border-black/50 rounded-md !mb-3 !p-2 w-full"
             type="text"
             name="phone"
             onChange={handleChange}

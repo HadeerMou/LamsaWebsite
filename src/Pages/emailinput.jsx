@@ -96,7 +96,7 @@ function EmailInput() {
               Email
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md !mb-5 !p-3 w-full"
+              className="input bg-transparent !border !border-black/50 rounded-md !mb-5 !p-3 w-full"
               type="text"
               name="email"
               placeholder="email@example.com"
@@ -112,7 +112,7 @@ function EmailInput() {
         </div>
       </div>
       {/* Mobile Design*/}
-      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-10 !py-30 sm:p-10! !w-full !mx-auto lg:hidden">
+      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-10 !py-20 sm:p-10! !w-full !mx-auto lg:hidden">
         <h1 className="text-center text-2xl font-bold !mb-3">
           Email verification
         </h1>
@@ -124,7 +124,7 @@ function EmailInput() {
             Email
           </label>
           <input
-            className="input bg-transparent border border-black/50 rounded-md !mb-7 !p-3 w-full"
+            className="bg-transparent !border !border-black/50 rounded-md !mb-7 !p-3 w-full"
             type="text"
             name="email"
             placeholder="email@example.com"

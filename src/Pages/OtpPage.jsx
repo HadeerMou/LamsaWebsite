@@ -99,23 +99,34 @@ function OtpPage() {
             Please Enter the 6-digit code we sent to {email}
           </p>
           <div className="w-full">
-            <label className="block font-bold !mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              className="input bg-transparent border border-black/50 rounded-md !mb-5 !p-3 w-full"
-              type="text"
-              name="email"
-              placeholder="email@example.com"
-            />
-            <button className="!bg-red-700 text-white font-bold !py-3 rounded-lg w-full cursor-pointer">
-              Send code
+            <div className="flex items-center w-3/4 gap-4 !pb-3 !my-3 !mx-auto">
+              {otp.map((digit, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  inputMode="numeric"
+                  pattern="\d*"
+                  maxLength="1"
+                  value={digit}
+                  ref={(el) => (inputsRef.current[index] = el)}
+                  onChange={(e) => handleChange(e, index)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
+                  className="w-full h-18 text-center text-2xl !border rounded-sm border-gray-300! focus:outline-none! focus:border-black!"
+                  placeholder="-"
+                />
+              ))}
+            </div>
+            <Link className="block text-sm text-center !text-black/50 !underline !mb-3">
+              Send Again
+            </Link>
+            <button className="bg-red-700! text-white font-bold !py-3 rounded-lg w-full">
+              Continue
             </button>
           </div>
         </div>
       </div>
       {/* Mobile Design*/}
-      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-6 !py-25 sm:p-10! !w-full !mx-auto lg:hidden">
+      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-6 !py-20 sm:p-10! !w-full !mx-auto lg:hidden">
         <h1 className="text-center text-2xl font-bold !mb-3">
           Verify your Email Address
         </h1>
@@ -134,7 +145,7 @@ function OtpPage() {
               ref={(el) => (inputsRef.current[index] = el)}
               onChange={(e) => handleChange(e, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className="w-full h-14 text-center border-b-2 border-gray-300 focus:outline-none! focus:border-black!"
+              className="w-full h-14 text-center !border rounded-sm border-gray-300! focus:outline-none! focus:border-black!"
               placeholder="-"
             />
           ))}

@@ -86,13 +86,13 @@ function ResetPass() {
           </p>
           <div className="w-full">
             <input
-              className="input bg-transparent border border-black/50 rounded-md !mb-7 !p-3 w-full"
+              className="input bg-transparent !border !border-black/50 rounded-md !mb-7 !p-3 w-full"
               type="password"
               name="password"
               placeholder="New Password"
             />
             <input
-              className="input bg-transparent border border-black/50 rounded-md !mb-7 !p-3 w-full"
+              className="input bg-transparent !border !border-black/50 rounded-md !mb-7 !p-3 w-full"
               type="password"
               name="password"
               placeholder="Confirm New Password"
@@ -104,20 +104,20 @@ function ResetPass() {
         </div>
       </div>
       {/* Mobile Design*/}
-      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-10 !py-30 sm:p-10! !w-full !mx-auto lg:hidden">
+      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-10 !py-20 sm:p-10! !w-full !mx-auto lg:hidden">
         <h1 className="text-center text-2xl font-bold !mb-3">Reset Password</h1>
         <p className="text-center !text-md !mb-8">
           Please enter a new password to update your password
         </p>
         <div>
           <input
-            className="input bg-transparent border border-black/50 rounded-md !mb-7 !p-3 w-full"
+            className="input bg-transparent !border !border-black/50 rounded-md !mb-7 !p-3 w-full"
             type="password"
             name="password"
             placeholder="New Password"
           />
           <input
-            className="input bg-transparent border border-black/50 rounded-md !mb-7 !p-3 w-full"
+            className="input bg-transparent !border !border-black/50 rounded-md !mb-7 !p-3 w-full"
             type="password"
             name="password"
             placeholder="Confirm New Password"

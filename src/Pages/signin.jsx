@@ -91,19 +91,19 @@ function Signin({ userType }) {
           <h1 className="text-3xl font-bold !mb-4">Welcome Back to LAMSA</h1>
           <h2 className="text-xl font-bold !mb-6">Login</h2>
           <form className="w-full">
-            <label className="block font-bold mb-2" htmlFor="email">
+            <label className="block font-bold !mb-2" htmlFor="email">
               Email
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md !mb-5 !p-3 w-full"
+              className="bg-transparent !border !border-black/50 rounded-md !mb-5 !p-3 w-full"
               type="text"
               name="email"
             />
-            <label className="block font-bold mb-2" htmlFor="password">
+            <label className="block font-bold !mb-2" htmlFor="password">
               Password
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md !mb-1 !p-3 w-full"
+              className="bg-transparent !border !border-black/50 rounded-md !mb-1 !p-3 w-full"
               type="text"
               name="password"
             />
@@ -133,8 +133,8 @@ function Signin({ userType }) {
         </div>
       </div>
       {/* Mobile Design: Sign-up Form */}
-      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-10 !py-20 sm:p-10! !w-full !mx-auto lg:hidden">
-        <h1 className="text-center text-2xl font-bold !mb-4">
+      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !p-10 sm:p-10! !w-full !mx-auto lg:hidden">
+        <h1 className="text-center text-2xl! lg:text-3xl! font-bold !mb-4">
           Welcome Back to LAMSA
         </h1>
         <h2 className="text-center text-lg font-bold !mb-6">Sign in</h2>
@@ -143,7 +143,7 @@ function Signin({ userType }) {
             Email
           </label>
           <input
-            className="input bg-transparent border border-black/50 rounded-md !mb-5 !p-3 w-full"
+            className="input bg-transparent !border !border-black/50 rounded-md !mb-5 !p-3 w-full"
             type="text"
             name="email"
           />
@@ -151,7 +151,7 @@ function Signin({ userType }) {
             Password
           </label>
           <input
-            className="input bg-transparent border border-black/50 rounded-md !mb-1 !p-3 w-full"
+            className="input bg-transparent !border !border-black/50 rounded-md !mb-1 !p-3 w-full"
             type="text"
             name="password"
           />
