@@ -3,7 +3,7 @@ import ProductList from "./Components/ProductList";
 import Cart from "./Components/cart";
 import { TranslationProvider } from "./TranslationContext";
 import About from "./Pages/About";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./Pages/Home";
 import Contact from "./Pages/contact";
 import Checkout from "./Pages/checkout";
@@ -15,7 +15,6 @@ import DshMessages from "./Dashboard/DshMessages";
 import DshOrders from "./Dashboard/DshOrders";
 import "./Dashboard/dash.css";
 import Dashboard from "./Dashboard/dashboard";
-import NoAccount from "./Pages/noAccount";
 import Profile from "./Pages/profile";
 import Signin from "./Pages/signin";
 import Signup from "./Pages/signup";
@@ -34,9 +33,13 @@ import ProductDetails from "./Dashboard/ProductDetails";
 import CategoryPage from "./Pages/categoryPage";
 import OrderSuccess from "./Pages/OrderSuccess";
 import UserAddresses from "./Pages/userAddresses";
+import Profile2 from "./Pages/profile2";
+import Landing from "./Pages/Landing";
 
 function App() {
   const API_BASE_URL = import.meta.env.VITE_API_URL;
+  const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]); // State for cart items
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -45,6 +48,26 @@ function App() {
     (acc, item) => acc + (item.quantity || 0),
     0
   );
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 1024px)").matches); // Tailwind's `lg` breakpoint
+    };
+
+    checkMobile(); // Check on initial load
+    window.addEventListener("resize", checkMobile); // Re-check on window resize
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  // Redirect to Landing page for mobile users
+  useEffect(() => {
+    if (isMobile && location.pathname === "/") {
+      navigate("/landing"); // Redirect to the Landing page
+    }
+  }, [isMobile, location.pathname, navigate]);
 
   // Toggle cart visibility
   const toggleCartVisibility = () => {
@@ -105,22 +128,17 @@ function App() {
     }
   };
 
-  const [showProducts, setShowProducts] = useState(true); // State to control product visibility
-  const toggleProductsVisibility = () => {
-    setShowProducts((prevState) => !prevState); // Toggle visibility
-  };
-
   return (
     <CurrencyProvider>
       <TranslationProvider>
         <Routes>
+          <Route path="/profile2" element={<Profile2 />} />
+          <Route path="/landing" element={<Landing />} />
           <Route
             path="/"
             element={
               <Home
-                showProducts={showProducts}
                 toggleCartVisibility={toggleCartVisibility}
-                toggleProductsVisibility={toggleProductsVisibility}
                 cart={cart}
                 products={products}
                 addToCart={addToCart}
@@ -132,9 +150,7 @@ function App() {
             path="/about"
             element={
               <About
-                showProducts={showProducts}
                 toggleCartVisibility={toggleCartVisibility}
-                toggleProductsVisibility={toggleProductsVisibility}
                 cart={cart}
                 totalQuantity={totalQuantity}
               />
@@ -144,9 +160,7 @@ function App() {
             path="/contact"
             element={
               <Contact
-                showProducts={showProducts}
                 toggleCartVisibility={toggleCartVisibility}
-                toggleProductsVisibility={toggleProductsVisibility}
                 cart={cart}
                 totalQuantity={totalQuantity}
               />
@@ -157,11 +171,9 @@ function App() {
             path="/categorypage"
             element={
               <CategoryPage
-                showProducts={showProducts}
                 products={products}
                 cart={cart}
                 toggleCartVisibility={toggleCartVisibility}
-                toggleProductsVisibility={toggleProductsVisibility}
                 addToCart={addToCart}
                 totalQuantity={totalQuantity}
               />
@@ -173,8 +185,6 @@ function App() {
               <ProductView
                 cart={cart}
                 toggleCartVisibility={toggleCartVisibility}
-                toggleProductsVisibility={toggleProductsVisibility}
-                showProducts={showProducts}
                 addToCart={addToCart}
                 totalQuantity={totalQuantity}
               />
@@ -184,9 +194,7 @@ function App() {
             path="/profile"
             element={
               <Profile
-                showProducts={showProducts}
                 toggleCartVisibility={toggleCartVisibility}
-                toggleProductsVisibility={toggleProductsVisibility}
                 cart={cart}
                 products={products}
                 totalQuantity={totalQuantity}
@@ -200,8 +208,7 @@ function App() {
           <Route path="/dashboard/users" element={<DshUsers />} />
           <Route path="/dashboard/messages" element={<DshMessages />} />
           <Route path="/dashboard/orders" element={<DshOrders cart={cart} />} />
-          <Route path="/register" element={<NoAccount />} />
-          <Route path="/user-login" element={<Signin userType="USER" />} />
+          <Route path="/login" element={<Signin userType="USER" />} />
           <Route path="/admin-login" element={<Signin userType="ADMIN" />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/otp" element={<OtpPage />} />
@@ -213,9 +220,7 @@ function App() {
             path="/profile/addresses"
             element={
               <UserAddresses
-                showProducts={showProducts}
                 toggleCartVisibility={toggleCartVisibility}
-                toggleProductsVisibility={toggleProductsVisibility}
                 cart={cart}
                 products={products}
                 totalQuantity={totalQuantity}
@@ -238,12 +243,11 @@ function App() {
               <ProductList
                 products={products}
                 cart={cart}
-                addToCart={addToCart} // Ensure addToCart is passed correctly
+                addToCart={addToCart}
               />
             }
           />
         </Routes>
-
         {/* Conditionally render Cart only when products are loaded */}
         {!isLoading && (
           <Cart
@@ -255,7 +259,6 @@ function App() {
             totalQuantity={totalQuantity}
           />
         )}
-        <productList addToCart={addToCart} fetchUserCart={fetchUserCart} />
       </TranslationProvider>
     </CurrencyProvider>
   );

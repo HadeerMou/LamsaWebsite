@@ -1,26 +1,24 @@
-import "./HomeGrid.css";
 import React from "react";
 import { useTranslation } from "../TranslationContext";
 
 export default function HomeGrid() {
   const { translations } = useTranslation();
   return (
-    <div class="headcontainer !pb-20  bg-red ">
+    <div class="!pb-20  bg-red ">
       <div className="relative flex items-center justify-center">
         <div className="img w-full">
           <img
             className="w-full h-auto object-cover"
-            src="/Group 6.jpg"
+            src="assets/Group 5.jpg"
             alt=""
           />
         </div>
-        <div className="intro absolute top-1/4 sm:top-1/3 text-center w-full px-4">
-          <h1 className="text-3xl !sm:text-4xl !md:text-5xl !lg:text-6xl font-bold text-black/80 !mb-3">
-            LAMSA
+        <div className=" absolute top-1/4 sm:top-1/3 text-center w-full px-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black/70 mb-4">
+            {translations.lamsa}
           </h1>
-          <p className="text-sm sm:text-base md:text-lg max-w-[600px] mx-auto ">
-            Your ultimate destination for exquisite paintings, featuring
-            timeless classics and modern masterpieces for every art enthusiast.
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg max-w-[55ch] sm:max-w-[400px] md:max-w-[510px] !mx-auto">
+            {translations.brief}
           </p>
         </div>
       </div>

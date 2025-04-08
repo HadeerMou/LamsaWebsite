@@ -8,11 +8,8 @@ function Home({
   toggleProductsVisibility,
   toggleCartVisibility,
   cart,
-  addToCart,
   totalQuantity,
 }) {
-  console.log("addToCart in Home:", addToCart);
-
   return (
     <>
       <Header

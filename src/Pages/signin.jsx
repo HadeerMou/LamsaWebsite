@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import "./signin.css";
-import logo from "../logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Signin({ userType }) {
@@ -72,47 +70,114 @@ function Signin({ userType }) {
   };
 
   return (
-    <div className="loginContainer">
-      <div className="logintop">
-        <img class="noaclogo" src={logo} alt="Logo" />
-        <h1>Welcome Back to Charmi</h1>
-        <h2>Login</h2>
-      </div>
-      <div className="inputs">
-        <label className="label" htmlFor="">
-          Email
-        </label>
-        <input
-          className="input"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label className="label" htmlFor="">
-          Password
-        </label>
-        <input
-          className="input"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+    <div className="relative flex flex-col min-h-screen">
+      {/* Mobile Design: Background Image */}
+      <div className="absolute !top-0 left-0 w-full !h-1/2 sm:h-1/2 lg:hidden">
+        <img
+          className="w-full h-full object-cover"
+          src="\assets\Untitled-1-25.jpg"
+          alt=""
         />
       </div>
-      {error && <p className="error">{error}</p>}
-      <div className="loginbutton">
-        <button onClick={handleLogin}>Sign in</button>
+      <div className="hidden lg:flex lg:justify-center lg:items-center lg:gap-10 lg:!py-3">
+        <div className="img w-1/2 !px-4">
+          <img
+            className="w-full h-200 object-cover rounded-3xl !mx-8"
+            src="\assets\Untitled-1-25.jpg"
+            alt=""
+          />
+        </div>
+        <div className="flex flex-col items-center justify-center w-1/2 h-200 !p-20 rounded-lg">
+          <h1 className="text-3xl font-bold !mb-4">Welcome Back to LAMSA</h1>
+          <h2 className="text-xl font-bold !mb-6">Login</h2>
+          <form className="w-full">
+            <label className="block font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+              type="text"
+              name="email"
+            />
+            <label className="block font-bold mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+              type="text"
+              name="password"
+            />
+            {error && <p className="error">{error}</p>}
+            <button
+              type="submit"
+              className="!bg-red-700 text-white font-bold !py-3 rounded-lg w-full cursor-pointer"
+            >
+              Sign in
+            </button>
+          </form>
+          <div className="forgotpass w-full !mt-4">
+            <a href="" onClick={() => navigate("/forgot-password")}>
+              Forgot your password?
+            </a>
+          </div>
+          <div className="navto w-full flex gap-4 !mt-1">
+            <h5>Don't have an Account? </h5>
+            <p
+              className="!text-red-500 cursor-pointer font-bold"
+              onClick={() => navigate("/signup")}
+            >
+              Sign Up
+            </p>
+          </div>
+        </div>
       </div>
-      <br />
-      <div className="forgotpass">
-        <a href="" onClick={() => navigate("/forgot-password")}>
-          Forgot your password?
-        </a>
-      </div>
-      <div className="navto">
-        <h5>Don't have an Account? </h5>
-        <a href="" onClick={() => navigate("/signup")}>
-          Sign Up
-        </a>
+      {/* Mobile Design: Sign-up Form */}
+      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-10 !py-20 sm:p-10! !w-full !mx-auto lg:hidden">
+        <h1 className="text-center text-2xl font-bold !mb-4">
+          Welcome Back to LAMSA
+        </h1>
+        <h2 className="text-center text-lg font-bold !mb-6">Sign in</h2>
+        <form>
+          <label className="block font-bold !mb-2" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="input bg-transparent border border-black/50 rounded-md !mb-5 !p-3 w-full"
+            type="text"
+            name="email"
+          />
+          <label className="block font-bold !mb-2" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="input bg-transparent border border-black/50 rounded-md !mb-1 !p-3 w-full"
+            type="text"
+            name="password"
+          />
+          <Link
+            to={"/forgot-password"}
+            className="block text-xs !mb-5 text-right hover:text-red-500"
+          >
+            Forgot password?
+          </Link>
+          {error && <p className="text-red-500 text-sm !mb-4">{error}</p>}
+          <button
+            type="submit"
+            className="bg-red-700! text-white font-bold !py-3 rounded-lg w-full"
+          >
+            Sign in
+          </button>
+        </form>
+        <div className="forgotpass w-full !mt-4"></div>
+        <div className="navto w-full flex gap-4 !mt-1">
+          <h5>Don't have an Account? </h5>
+          <p
+            className="!text-red-500 cursor-pointer font-bold"
+            onClick={() => navigate("/signup")}
+          >
+            Sign Up
+          </p>
+        </div>
       </div>
     </div>
   );

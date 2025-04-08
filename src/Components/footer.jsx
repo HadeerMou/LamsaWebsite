@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "../TranslationContext";
 import "./footer.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Footer() {
   const { translations } = useTranslation();
@@ -11,62 +11,55 @@ export default function Footer() {
       <footer className="!p-20  bg-red-300/40 shadow-2xl shadow-red-500 rounded-t-[14%]">
         <div className="footer flex flex-col items-center mx-auto px-4 py-16 sm:px-6 lg:px-8">
           <div className="flex justify-center text-gray-700 ">
-            <h1>LAMSA</h1>
+            <h1>{translations.lamsa}</h1>
           </div>
 
           <p className="mx-auto !mt-8 !mb-15 max-w-md text-center leading-relaxed text-gray-500">
-            Your ultimate destination for exquisite paintings, featuring
-            timeless classics and modern masterpieces for every art enthusiast.
+            {translations.foot}
           </p>
 
           <ul className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
             <li>
-              <a
+              <Link
                 className="text-gray-700 transition hover:text-gray-700/75"
-                href="#"
+                to={"/"}
               >
                 {" "}
-                Home{" "}
-              </a>
+                {translations.home}{" "}
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 className="text-gray-700 transition hover:text-gray-700/75"
-                href="#"
+                to={"/about"}
               >
                 {" "}
-                About{" "}
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75"
-                href="#"
-              >
-                {" "}
-                Paintings{" "}
-              </a>
+                {translations.about}{" "}
+              </Link>
             </li>
 
             <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75"
-                href="#"
-              >
+              <Link className="text-gray-700 transition hover:text-gray-700/75">
                 {" "}
-                curtains{" "}
-              </a>
+                {translations.paintings}{" "}
+              </Link>
             </li>
 
             <li>
-              <a
+              <Link className="text-gray-700 transition hover:text-gray-700/75">
+                {" "}
+                {translations.curtains}{" "}
+              </Link>
+            </li>
+
+            <li>
+              <Link
                 className="text-gray-700 transition hover:text-gray-700/75"
-                href="#"
+                to={"/contact"}
               >
                 {" "}
-                Contact{" "}
-              </a>
+                {translations.contact}{" "}
+              </Link>
             </li>
           </ul>
 
@@ -78,7 +71,7 @@ export default function Footer() {
                 target="_blank"
                 className="text-gray-700 transition hover:text-gray-700/75"
               >
-                <span className="sr-only">Facebook</span>
+                <span className="sr-only">{translations.face}</span>
                 <svg
                   className="size-6"
                   fill="currentColor"
@@ -101,7 +94,7 @@ export default function Footer() {
                 target="_blank"
                 className="text-gray-700 transition hover:text-gray-700/75"
               >
-                <span className="sr-only">Instagram</span>
+                <span className="sr-only">{translations.insta}</span>
                 <svg
                   className="size-6"
                   fill="currentColor"

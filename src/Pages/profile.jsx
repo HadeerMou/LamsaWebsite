@@ -85,8 +85,7 @@ function Profile({
     if (Array.isArray(orders) && orders.length > 0) {
       fetchProductDetails(orders);
     }
-  }, [orders]); // Runs whenever `orders` change
-
+  }, [orders]);
   // Retrieve address from local storage on component mount
   useEffect(() => {
     const storedAddress = JSON.parse(localStorage.getItem("userAddress"));

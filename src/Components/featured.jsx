@@ -1,14 +1,15 @@
 import React from "react";
 import "./approach.css";
+import { useTranslation } from "../TranslationContext";
 
 function Featured() {
+  const { translations } = useTranslation();
   return (
     <>
       <div className="featured !mt-20 !mb-20 !p-5 sm:p-10">
         <h2 className="!text-5xl sm:text-3xl font-bold text-center !mb-7">
           Featured
         </h2>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-8">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <div key={item} className="card p-4 bg-white rounded-lg shadow-md">
@@ -41,14 +42,11 @@ function Featured() {
         </div>
         <div className="text !py-10">
           <h2 className="!text-5xl !sm:text-2xl !lg:text-5xl !max-w-[400px] !mb-10">
-            Our Passion is Your{" "}
-            <span className="text-red-300/80">Inspiriation</span>
+            {translations.ourpassion}{" "}
+            <span className="text-red-300/80">{translations.inspairation}</span>
           </h2>
-          <p className="max-w-120 !mb-6">
-            With each livary wall we send you our passion for beautiful things
-            for your home. The content of each wall is agreed with the Creators.
-          </p>
-          <button>Shop Now</button>
+          <p className="max-w-120 !mb-6">{translations.passioncont}</p>
+          <button>{translations.shopnow}</button>
         </div>
       </div>
     </>

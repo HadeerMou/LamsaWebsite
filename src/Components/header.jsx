@@ -8,11 +8,7 @@ import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
 import { CiShoppingCart } from "react-icons/ci";
 
-function Header({
-  toggleProductsVisibility,
-  toggleCartVisibility,
-  totalQuantity,
-}) {
+function Header({ toggleCartVisibility, totalQuantity }) {
   const [cart, setCart] = useState([]); // ✅ Define cart state
   const API_BASE_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
@@ -34,6 +30,10 @@ function Header({
 
   useEffect(() => {
     fetchUserCart();
+  }, []);
+
+  useEffect(() => {
+    setSelectedLanguage(localStorage.getItem("language") || "en");
   }, []);
 
   const handleLanguageChange = (event) => {
@@ -65,30 +65,36 @@ function Header({
 
   return (
     <header className="bg-white">
-      <div className="mx-auto flex h-16  items-center gap-8 px-4 sm:px-6 lg:px-8">
-        <a className="block text-teal-600" href="#">
-          <h2>LAMSA</h2>
-        </a>
+      <div className="mx-auto flex h-16 items-center gap-8 px-4 sm:px-6 lg:px-8">
+        <Link to="/">
+          <h2>{translations.lamsa}</h2>
+        </Link>
 
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-gray-600 hover:text-gray-800">
-              Home
-            </Link>
             <Link to="/about" className="text-gray-600 hover:text-gray-800">
-              About
+              {translations.about}
             </Link>
             <Link to="/paintings" className="text-gray-600 hover:text-gray-800">
-              Paintings
+              {translations.paintings}
             </Link>
             <Link to="/curtains" className="text-gray-600 hover:text-gray-800">
-              Curtains
+              {translations.curtains}
             </Link>
             <Link to="/contact" className="text-gray-600 hover:text-gray-800">
-              Contact
+              {translations.contact}
             </Link>
           </nav>
           <div className="flex items-center gap-4">
+            <select
+              name="lang"
+              id="lang"
+              value={selectedLanguage}
+              onChange={handleLanguageChange}
+            >
+              <option value="en">{translations.english}</option>
+              <option value="ar">{translations.arabic}</option>
+            </select>
             <div className="hidden md:flex items-center gap-4">
               {" "}
               {isLoggedIn ? (
@@ -96,21 +102,21 @@ function Header({
                   className="text-gray-600 hover:text-gray-800"
                   onClick={handleLogout}
                 >
-                  Logout
+                  {translations.logout}
                 </button>
               ) : (
                 <>
                   <Link
-                    to="/user-login"
+                    to="/login"
                     className="bg-red-300 text-white !px-5 !py-2 rounded-md hover:bg-red-700"
                   >
-                    Login
+                    {translations.login}
                   </Link>
                   <Link
-                    to="/register"
+                    to="/signup"
                     className="bg-gray-100 text-gray-700 !px-5 !py-2 rounded-md hover:bg-gray-300"
                   >
-                    Register
+                    {translations.register}
                   </Link>
                 </>
               )}
@@ -126,7 +132,7 @@ function Header({
           </div>
 
           <button
-            className="flex md:hidden !p-2 text-gray-600 rounded-sm"
+            className="flex md:hidden !p-2 !m-2 text-gray-600 !bg-transparent rounded-sm"
             onClick={() => setOpen(!open)}
           >
             <span className="sr-only">Toggle menu</span>
@@ -150,39 +156,32 @@ function Header({
       {open && (
         <div className="md:hidden bg-white shadow-lg absolute top-16 left-0 w-full flex flex-col items-center !py-4 !space-y-4 z-50">
           <Link
-            to="/"
-            className="text-gray-600 hover:text-gray-800"
-            onClick={() => setOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
             to="/about"
             className="text-gray-600 hover:text-gray-800"
             onClick={() => setOpen(false)}
           >
-            About
+            {translations.about}
           </Link>
           <Link
             to="/paintings"
             className="text-gray-600 hover:text-gray-800"
             onClick={() => setOpen(false)}
           >
-            Paintings
+            {translations.paintings}
           </Link>
           <Link
             to="/curtains"
             className="text-gray-600 hover:text-gray-800"
             onClick={() => setOpen(false)}
           >
-            Curtains
+            {translations.curtains}
           </Link>
           <Link
             to="/contact"
             className="text-gray-600 hover:text-gray-800"
             onClick={() => setOpen(false)}
           >
-            Contact
+            {translations.contact}
           </Link>
 
           {/* Mobile Login/Register or Logout */}
@@ -194,23 +193,23 @@ function Header({
                 setOpen(false);
               }}
             >
-              Logout
+              {translations.logout}
             </button>
           ) : (
             <>
               <Link
-                to="/user-login"
+                to="/login"
                 className="bg-red-300 text-white !px-4 !py-1 rounded-md hover:bg-red-700"
                 onClick={() => setOpen(false)}
               >
-                Login
+                {translations.login}
               </Link>
               <Link
-                to="/register"
+                to="/signup"
                 className="bg-gray-100 text-gray-700 !px-4 !py-1 rounded-md hover:bg-gray-300"
                 onClick={() => setOpen(false)}
               >
-                Register
+                {translations.register}
               </Link>
             </>
           )}

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import logo from "../logo.png";
 import "./OtpPage.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function OtpPage() {
@@ -75,36 +75,77 @@ function OtpPage() {
   };
 
   return (
-    <div className="loginContainer">
-      <div className="logintop">
-        <img className="noaclogo" src={logo} alt="Logo" />
-        <h1>Verify your Email Address</h1>
-        <p>Please Enter the 6-digit code we sent to {email}</p>
+    <div className="relative flex flex-col min-h-screen">
+      {/* Mobile Design: Background Image */}
+      <div className="absolute !top-0 left-0 w-full !h-2/3 sm:h-1/2 lg:hidden">
+        <img
+          className="w-full h-full object-cover"
+          src="\assets\Untitled-1-25.jpg"
+          alt=""
+        />
       </div>
-
-      <div className="codeRow">
-        {otp.map((digit, index) => (
-          <input
-            key={index}
-            type="text"
-            inputMode="numeric"
-            pattern="\d*"
-            maxLength="1"
-            value={digit}
-            ref={(el) => (inputsRef.current[index] = el)}
-            onChange={(e) => handleChange(e, index)}
-            onKeyDown={(e) => handleKeyDown(e, index)}
-            className="otpInput"
+      <div className="hidden lg:flex lg:justify-center lg:items-center lg:gap-10 lg:!py-3">
+        <div className="img w-1/2 !px-4">
+          <img
+            className="w-full h-200 object-cover rounded-3xl !mx-8"
+            src="\assets\Untitled-1-25.jpg"
+            alt=""
           />
-        ))}
+        </div>
+        <div className="flex flex-col items-center justify-center w-1/2 h-200 !p-20 rounded-lg">
+          <h1 className="text-3xl font-bold !mb-4">
+            Verify your Email Address
+          </h1>
+          <p className="text-lg !mb-10">
+            Please Enter the 6-digit code we sent to {email}
+          </p>
+          <div className="w-full">
+            <label className="block font-bold !mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="input bg-transparent border border-black/50 rounded-md !mb-5 !p-3 w-full"
+              type="text"
+              name="email"
+              placeholder="email@example.com"
+            />
+            <button className="!bg-red-700 text-white font-bold !py-3 rounded-lg w-full cursor-pointer">
+              Send code
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div className="navigateto">
-        <a href="">Send Again</a>
-      </div>
-
-      <div className="loginbutton">
-        <button onClick={handleVerifyOtp}>Continue</button>
+      {/* Mobile Design*/}
+      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-6 !py-25 sm:p-10! !w-full !mx-auto lg:hidden">
+        <h1 className="text-center text-2xl font-bold !mb-3">
+          Verify your Email Address
+        </h1>
+        <p className="text-center text-md !mb-6">
+          Please Enter the 6-digit code we sent to {email}
+        </p>
+        <div className="codeRow">
+          {otp.map((digit, index) => (
+            <input
+              key={index}
+              type="text"
+              inputMode="numeric"
+              pattern="\d*"
+              maxLength="1"
+              value={digit}
+              ref={(el) => (inputsRef.current[index] = el)}
+              onChange={(e) => handleChange(e, index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              className="w-full h-14 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
+              placeholder="-"
+            />
+          ))}
+        </div>
+        <Link className="block text-sm text-center !text-black/50 !underline !mb-3">
+          Send Again
+        </Link>
+        <button className="bg-red-700! text-white font-bold !py-3 rounded-lg w-full">
+          Continue
+        </button>
       </div>
     </div>
   );

@@ -81,20 +81,22 @@ function ProductList({ addToCart }) {
 
   return (
     <div className="product-list">
-      <div className="sc1">
-        <h1 className="DesignTitle">{categoryName}</h1>
+      <div className="title">
+        <h1 className="text-5xl sm:text-xl font-bold text-center !mb-7">
+          {categoryName}
+        </h1>
       </div>
-      <div className="webs">
-        {product.map((product) => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 !gap-6 !py-8">
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
           return (
-            <div key={product.id} className="product">
-              <div className="img">
+            <div
+              key={product.id}
+              className="card p-4 bg-white rounded-lg shadow-md"
+            >
+              <div className="img bg-gray-100 !p-18 sm:p-16 flex justify-center items-center rounded-md">
                 <img
-                  src={
-                    hoveredProduct === product.id && product.images.length > 1
-                      ? product.images[1]
-                      : product.images[0]
-                  }
+                  className="rounded-md shadow-[rgba(0,0,0,0.488)_-4px_4px_15px] max-w-[250px]"
+                  src="\assets\Untitled-10-03.jpg"
                   alt={product.name}
                   onMouseEnter={() => setHoveredProduct(product.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
@@ -103,7 +105,7 @@ function ProductList({ addToCart }) {
                   }
                 />
               </div>
-              <div className="content">
+              <div className="desc !py-2 text-center">
                 <h3>{product.name}</h3>
                 <p>
                   {selectedCurrency === "egp" ? "E£" : "$"}
@@ -112,9 +114,9 @@ function ProductList({ addToCart }) {
                     : "N/A"}
                 </p>
                 <h4 className="text-success">{translations.prodOndm}</h4>
-                <div className="bottom">
+                <div className="bottom !p-4">
                   <button
-                    className="addtocart"
+                    className="bg-red-300! text-white !px-5 !py-2 rounded-md hover:bg-red-700! cursor-pointer"
                     onClick={() => {
                       addToCart(product);
                     }}

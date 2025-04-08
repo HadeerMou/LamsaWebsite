@@ -3,51 +3,75 @@ import React, { createContext, useState, useContext } from "react";
 // Translation data
 const translations = {
   en: {
+    english: "English",
+    arabic: "Arabic",
+    lamsa: "LAMSA",
     //header
     search: "What are you looking for?",
     home: "Home",
     products: "Products",
     about: "About",
     contact: "Contact Us",
-    //products
-    sf: "Sofas",
-    bd: "Beds",
-    td: "Tables & desks",
-    wd: "Wardrobes",
-    dn: "Dining furniture",
-    cc: "Cabinets & cupboards",
-    bt: "bedside tables",
-    bs: "Bookcases & shelving units",
+    login: "Login",
+    register: "Register",
     //home
-    title: "Welcome to Charmi Egypt",
-    designTitle: "Bedrooms",
+    brief:
+      "Your ultimate destination for exquisite paintings, featuring timeless classics and modern masterpieces for every art enthusiast",
+    ourapproach: "Our Approach",
+    fastship: "Fast Shipping",
+    fastcont: "We take care of shipping your products safe and fast",
+    highqua: "High Quality",
+    highcont: "our products is of high quality",
+    support: "Support 24/7",
+    supportcont: "our support is available for 24/7 to help you",
+    ourpassion: "Our Passion is Your",
+    inspairation: "Inspiration",
+    passioncont:
+      "With each livary wall we send you our passion for beautiful things for your home. The content of each wall is agreed with the Creators",
+    shopnow: "Shop Now",
     showmore: "Show more",
     //footer
+    foot: "Your ultimate destination for exquisite paintings, featuring timeless classics and modern masterpieces for every art enthusiast.",
+    paintings: "Paintings",
+    curtains: "Curtains",
     contInfo: "Contact Info",
     qlinks: "Quick Links",
     follow: "Follow Us",
     //about
     abtit: "About Us",
-    chtitle: "Charmi",
-    chparagraph:
-      "Charmi was founded in 2003, and since then we have been striving to achieve excellence in the home wooden furniture industry. We believe in the quality of design and fine craftsmanship that is reflected in every piece of furniture we offer. Our company offers a variety of products that include furniture for living rooms, bedrooms, kitchens, tables, chairs, and more. What distinguishes our products is the optimal use of natural wood, and unique designs that suit all tastes. We are committed to innovation and high quality, and we always strive to meet the needs and expectations of our customers. Over the years, our company has achieved many achievements and certifications that reflect our commitment to quality and excellence in the furniture industry. We are proud to be a part of our customers' lives, and we promise to continue to provide the best products and services that enhance the beauty and comfort of their homes.",
+    intro:
+      "At Lamsa, we don’t just sell curtains and paintings—we help you create a home that tells your story. Let us bring a touch of elegance to your space. 🏡✨",
+    aboutlamsa: "About Lamsa",
+    aboutcontent:
+      "At Lamsa, we transform spaces into elegant masterpieces. we bring you carefully curated designs of paintings and curtains that add sophistication, warmth, and personality to your home. Whether you’re searching for luxurious drapes to enhance your windows or stunning artwork to elevate your walls, Lamsa offers premium-quality selections that cater to various styles and tastes. With a commitment to quality, creativity, and customer satisfaction, Lamsa ensures that every piece you choose reflects your unique aesthetic while maintaining superior craftsmanship.",
     vision: "Our vision",
     visioncont:
-      "Charmi was founded in 2003, and since then we have been striving to achieve excellence in the home wooden furniture industry. We believe in the quality of design and fine craftsmanship that is reflected in every piece of furniture we offer. Our vision is to bring the beauty of nature into our customers' homes by providing distinctive and elegant wooden furniture. Our company offers a variety of products that include furniture for living rooms, bedrooms, kitchens, tables, chairs, and more. What distinguishes our products is the optimal use of natural wood, and unique designs that suit all tastes. We are committed to innovation and high quality, and we always strive to meet the needs and expectations of our customers. Over the years, our company has achieved many achievements and certifications that reflect our commitment to quality and excellence in the furniture industry. We are proud to be a part of our customers' lives, and we promise to continue to provide the best products and services that enhance the beauty and comfort of their homes.",
-    choose: "Why choose us",
-    choosecont:
-      "What distinguishes our products is the optimal use of natural wood,and unique designs that suit all tastes. We are committed to innovation and high quality, and we always strive to meet the needs and expectations of our customers.",
+      "To become the leading online destination for high-quality home décor,inspiring customers to create stylish and harmonious living spaces.",
+    mission: "Our Mission",
+    aim: "At Lamsa, we aim to:",
+    mission1:
+      "Offer a diverse range of curtains and paintings that combine elegance, durability, and affordability.",
+    mission2:
+      "Provide a seamless online shopping experience with easy navigation, secure transactions, and fast delivery.",
+    mission3:
+      "Empower customers with expert design guidance to help them choose the perfect pieces for their homes.",
+    mission4:
+      "Continuously innovate and expand our product collections to meet evolving design trends and customer preferences.",
+    values: "Our Values",
+    value1:
+      "✨ Quality First – We prioritize premium materials and craftsmanship in every product we offer.",
+    value2:
+      "🎨 Creativity & Elegance – Our collection is carefully designed to inspire and enhance your space with artistic beauty.",
+    value3:
+      "🤝 Customer-Centric Approach – Your satisfaction is our top priority, and we are committed to delivering outstanding service.",
+    value4:
+      "🌿 Sustainability – We strive to source and produce environmentally responsible products that contribute to a better future.",
+    value5:
+      "💡 Innovation – We stay ahead of design trends to bring you fresh, stylish, and modern décor solutions.",
     //contact
-    conthead: "Do you need any help? please don't hesitate to reach out.",
     face: "facebook",
     insta: "instagram",
     youtube: "Youtube",
-    question:
-      "A Question, or any help needed? Contact us and we will be happy to help you.",
-    contactemail: "Contact us with email",
-    commentbtn: "Comment",
-    formtitle:
-      "Please share with us your opinion about your experience with CHARMI. Or any comment you want.",
     sendbtn: "Send",
     //productView
     addtocart: "Add to cart",
@@ -69,7 +93,6 @@ const translations = {
     ordersname: "Orders",
     analyticsname: "Analytics",
     messagesname: "Messages",
-    logoutname: "Log out",
     adminname: "Admins",
     //dashboard
     dashtitle: "Dashboard",
@@ -154,42 +177,71 @@ const translations = {
     prodOndm: "Produced on demand",
   },
   ar: {
+    english: "إنجليزي",
+    arabic: "عربي",
+    lamsa: "لمسة",
     //header
     search: "ما الذى تبحث عنه؟",
     home: "الصفحة الرئيسية",
     products: "منتجاتنا",
     about: "معلومات عنا",
     contact: "تواصل معنا",
-    //products
-    sf: "الأرائك",
-    bd: "أسرة",
-    td: "الطاولات والمكاتب",
-    wd: "خزائن الملابس",
-    dn: "أثاث الطعام",
-    cc: "الخزائن والدواليب",
-    bt: "طاولات بجانب السرير",
-    bs: "مكتبات ووحدات رفوف",
+    login: "تسجيل الدخول",
+    register: "التسجيل",
     //home
-    title: "مرحباً بكم في تشارمي مصر",
-    designTitle: "غرف النوم",
+    brief:
+      "وجهتك المثالية للوحات الفنية الرائعة، والتي تضم أعمالاً كلاسيكية خالدة وروائع فنية حديثة تناسب كل عشاق الفن",
+    ourapproach: "نهجنا",
+    fastship: "الشحن السريع",
+    fastcont: "نحن نحرص على شحن منتجاتك بشكل آمن وسريع",
+    highqua: "جودة عالية",
+    highcont: "منتجاتنا ذات جودة عالية",
+    support: "دعم 24/7",
+    supportcont: "دعمنا متاح على مدار الساعة طوال أيام الأسبوع لمساعدتك",
+    ourpassion: "شغفنا هو ",
+    inspairation: "إلهامك",
+    passioncont:
+      "مع كل جدار في المكتبة، نُرسل إليكم شغفنا بالأشياء الجميلة لمنزلكم. محتوى كل جدار مُتفق عليه مع المبدعين",
+    shopnow: "تسوق الآن",
     more: "عرض المزيد",
     //footer
+    foot: "وجهتك المثالية للوحات الفنية الرائعة، والتي تضم أعمالاً كلاسيكية خالدة وروائع فنية حديثة تناسب كل عشاق الفن",
+    paintings: "لوحات فنية",
+    curtains: "ستائر",
     contInfo: "معلومات الاتصال",
     qlinks: "روابط سريعة",
     follow: "تابعنا",
     //about
     abtit: "معلومات عنا",
-    chtitle: "تشارمي",
-    chparagraph:
-      "تأسست شركة تشارمي عام 2003 ومنذ ذلك الحين ونحن نسعى لتحقيق التميز في صناعة الأثاث الخشبي المنزلي. نؤمن بجودة التصميم والحرفية الدقيقة التي تنعكس في كل قطعة أثاث نقدمها. تقدم شركتنا مجموعة متنوعة من المنتجات التي تشمل أثاث غرف المعيشة وغرف النوم والمطابخ والطاولات والكراسي والمزيد. ما يميز منتجاتنا هو الاستخدام الأمثل للخشب الطبيعي، والتصميمات الفريدة التي تناسب جميع الأذواق. نحن ملتزمون بالابتكار والجودة العالية، ونسعى دائمًا لتلبية احتياجات وتوقعات عملائنا. على مر السنين، حققت شركتنا العديد من الإنجازات والشهادات التي تعكس التزامنا بالجودة والتميز في صناعة الأثاث. نحن فخورون بأن نكون جزءًا من حياة عملائنا، ونعد بمواصلة تقديم أفضل المنتجات والخدمات التي تعزز جمال وراحة منازلهم.",
+    intro:
+      "🏡✨ في لمسة، لا نبيع الستائر واللوحات فحسب، بل نساعدك على إنشاء منزل يروي قصتك. دعنا نضفي لمسة من الأناقة على مساحتك ",
+    aboutlamsa: "نبذة عن لمسة",
+    aboutcontent:
+      "في لمسة، نحول المساحات إلى روائع فنية أنيقة. نقدم لكم تصاميم مختارة بعناية من اللوحات والستائر التي تضفي على منزلكم لمسة من الرقي والدفء والشخصية المميزة. سواء كنتم تبحثون عن ستائر فاخرة لإضفاء لمسة جمالية على نوافذكم أو أعمال فنية خلابة لإضفاء لمسة جمالية على جدرانكم، تقدم لمسة تشكيلات عالية الجودة تناسب مختلف الأذواق والأنماط. مع التزامنا بالجودة والإبداع ورضا العملاء، تضمن لمسة أن تعكس كل قطعة تختارونها جمالكم الفريد مع الحفاظ على الحرفية العالية",
     vision: "رؤيتنا",
     visioncont:
-      "تأسست شركة تشارمي عام 2003 ومنذ ذلك الحين ونحن نسعى لتحقيق التميز في صناعة الأثاث الخشبي المنزلي. نؤمن بجودة التصميم والحرفية الدقيقة التي تنعكس في كل قطعة أثاث نقدمها. رؤيتنا هي جلب جمال الطبيعة إلى منازل عملائنا من خلال توفير أثاث خشبي مميز وأنيق. تقدم شركتنا مجموعة متنوعة من المنتجات التي تشمل أثاث غرف المعيشة وغرف النوم والمطابخ والطاولات والكراسي والمزيد. ما يميز منتجاتنا هو الاستخدام الأمثل للخشب الطبيعي، والتصميمات الفريدة التي تناسب جميع الأذواق. نحن ملتزمون بالابتكار والجودة العالية، ونسعى دائمًا لتلبية احتياجات وتوقعات عملائنا. على مر السنين، حققت شركتنا العديد من الإنجازات والشهادات التي تعكس التزامنا بالجودة والتميز في صناعة الأثاث. نحن فخورون بأن نكون جزءًا من حياة عملائنا، ونعد بمواصلة تقديم أفضل المنتجات والخدمات التي تعزز جمال وراحة منازلهم.",
-    choose: "لماذا تختارنا",
-    choosecont:
-      "ما يميز منتجاتنا هو الاستخدام الأمثل للخشب الطبيعي والتصميمات الفريدة التي تناسب كافة الأذواق، نحن ملتزمون بالإبداع والجودة العالية ونسعى دائماً لتلبية احتياجات وتوقعات عملائنا.",
-    //contact
-    conthead: "هل تحتاج إلى أي مساعدة؟ من فضلك لا تتردد في التواصل معنا.",
+      "أن نصبح الوجهة الإلكترونية الرائدة للديكور المنزلي عالي الجودة، ونلهم العملاء لابتكار مساحات معيشة أنيقة ومتناغمة",
+    mission: "مهمتنا",
+    aim: ":في لمسة، نهدف إلى",
+    mission1:
+      "تقديم مجموعة متنوعة من الستائر واللوحات تجمع بين الأناقة والمتانة وبأسعار معقولة",
+    mission2:
+      "توفير تجربة تسوق إلكتروني سلسة مع سهولة التصفح، ومعاملات آمنة، وتوصيل سريع",
+    mission3:
+      "تمكين العملاء من خلال إرشادات تصميمية احترافية لمساعدتهم على اختيار القطع المثالية لمنازلهم",
+    mission4:
+      "الابتكار المستمر وتوسيع مجموعات منتجاتنا لتلبية أحدث اتجاهات التصميم وتفضيلات العملاء",
+    values: "قيمنا",
+    value1:
+      "✨ الجودة أولاً - نعطي الأولوية للمواد الفاخرة والحرفية في كل منتج نقدمه",
+    value2:
+      "🎨 الجودة أولاً - نعطي الأولوية للمواد الفاخرة والحرفية في كل منتج نقدمه",
+    value3:
+      "🤝 نهج يركز على العميل - رضاكم هو أولويتنا القصوى، ونحن ملتزمون بتقديم خدمة متميزة",
+    value4:
+      "🌿 الاستدامة - نسعى جاهدين لتوفير و إنتاج منتجات صديقة للبيئة تُسهم في مستقبل أفضل",
+    value5:
+      "💡 الابتكار - نواكب أحدث صيحات التصميم لنقدم لكم حلول ديكور عصرية وأنيقة",
     face: "فيسبوك",
     insta: "انستجرام",
     youtube: "يوتيوب",
@@ -219,7 +271,6 @@ const translations = {
     productsname: "المنتجات",
     analyticsname: "التحليلات",
     messagesname: "رسائل",
-    logoutname: "تسجيل الخروج",
     adminname: "المشرفين",
     //dashboard
     dashtitle: "لوحة القيادة",

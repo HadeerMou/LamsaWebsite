@@ -1,30 +1,28 @@
 import React from "react";
 import "./approach.css";
+import { useTranslation } from "../TranslationContext";
 
 function Approach() {
+  const { translations } = useTranslation();
   return (
-    <div className="flex flex-wrap approachContainer !p-7 justify-around items-center gap-6">
+    <div className="flex flex-wrap approachContainer !p-7 justify-around items-center">
       <div className="left">
-        <h1 className="!mb-[5rem] !text-[3rem]">Our Approach</h1>
-        <div className="three flex flex-wrap !sm:flex-col gap-6">
-          <div className="part bg-black/1 !p-[50px] !sm:p-8 rounded-[5px] flex-col  !border-l !border-[rgba(0, 0, 0, 0.44)]">
+        <h1 className="!mb-[5rem] !text-4xl">{translations.ourapproach}</h1>
+        <div className="three flex flex-wrap !sm:flex-col gap-3">
+          <div className="part bg-black/1 !p-[50px] !sm:p-8 rounded-[5px] !border-l !border-[rgba(0, 0, 0, 0.44)]">
             <i class="fa-solid fa-truck-fast"></i>
-            <h5 className="font-bold text-lg !mb-2">FAST SHIPPING</h5>
-            <p className="max-w-50">
-              We take care of shipping our products safe and fast
-            </p>
+            <h5 className="font-bold text-lg !mb-2">{translations.fastship}</h5>
+            <p className="w-50">{translations.fastcont}</p>
           </div>
-          <div className="part bg-black/1 !p-[50px] flex-col !border-l !border-[rgba(0, 0, 0, 0.44)] rounded-[5px]">
+          <div className="part bg-black/1 !p-[50px] !sm:p-8 !border-l !border-[rgba(0, 0, 0, 0.44)] rounded-[5px]">
             <i class="fa-solid fa-truck-fast"></i>
-            <h5 className="font-bold text-lg !mb-2">HIGH QUALITY</h5>
-            <p className="max-w-50">our products is of high quality</p>
+            <h5 className="font-bold text-lg !mb-2">{translations.highqua}</h5>
+            <p className="w-50">{translations.highcont}</p>
           </div>
-          <div className="part bg-black/1 !p-[50px] flex-col !border-l !border-[rgba(0, 0, 0, 0.44)] rounded-[5px]">
+          <div className="part bg-black/1 !p-[50px] !sm:p-8 !border-l !border-[rgba(0, 0, 0, 0.44)] rounded-[5px]">
             <i class="fa-regular fa-face-grin-stars"></i>
-            <h5 className="font-bold text-lg !mb-2">SUPPORT 24/7</h5>
-            <p className="max-w-50">
-              our support is available for 24/7 to help you
-            </p>
+            <h5 className="font-bold text-lg !mb-2">{translations.support}</h5>
+            <p className="w-50">{translations.supportcont}</p>
           </div>
         </div>
       </div>

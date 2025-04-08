@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./signin.css";
 import logo from "../logo.png";
 
 function EmailInput() {
@@ -71,30 +70,74 @@ function EmailInput() {
   };
 
   return (
-    <div className="loginContainer">
-      <div className="logintop">
-        <img className="noaclogo" src={logo} alt="Logo" />
-        <h1>{isForgotPassword ? "Forget Password" : "Email Verification"}</h1>
-        <h5>Please Enter Your Email</h5>
-      </div>
-      <div className="inputs">
-        <label className="label" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="input"
-          type="email"
-          name="email"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          required
+    <div className="relative flex flex-col min-h-screen">
+      {/* Mobile Design: Background Image */}
+      <div className="absolute !top-0 left-0 w-full !h-2/3 sm:h-1/2 lg:hidden">
+        <img
+          className="w-full h-full object-cover"
+          src="\assets\Untitled-1-25.jpg"
+          alt=""
         />
       </div>
-      {error && <p className="error">{error}</p>}
-      <div className="loginbutton">
-        <button onClick={handleInput} disabled={loading}>
-          {loading ? "Sending..." : "Send Code"}
-        </button>
+      <div className="hidden lg:flex lg:justify-center lg:items-center lg:gap-10 lg:!py-3">
+        <div className="img w-1/2 !px-4">
+          <img
+            className="w-full h-200 object-cover rounded-3xl !mx-8"
+            src="\assets\Untitled-1-25.jpg"
+            alt=""
+          />
+        </div>
+        <div className="flex flex-col items-center justify-center w-1/2 h-200 !p-20 rounded-lg">
+          <h1 className="text-3xl font-bold !mb-4">Email verification</h1>
+          <p className="text-lg !mb-10">
+            Please enter your email to receive code
+          </p>
+          <div className="w-full">
+            <label className="block font-bold !mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="input bg-transparent border border-black/50 rounded-md !mb-5 !p-3 w-full"
+              type="text"
+              name="email"
+              placeholder="email@example.com"
+            />
+            {error && <p className="error">{error}</p>}
+            <button
+              onClick={handleInput}
+              className="!bg-red-700 text-white font-bold !py-3 rounded-lg w-full cursor-pointer"
+            >
+              Send code
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* Mobile Design*/}
+      <div className="relative !mt-auto bg-white rounded-t-4xl shadow-lg !px-10 !py-30 sm:p-10! !w-full !mx-auto lg:hidden">
+        <h1 className="text-center text-2xl font-bold !mb-3">
+          Email verification
+        </h1>
+        <p className="text-center !text-md !mb-8">
+          Please enter your email to receive code
+        </p>
+        <div>
+          <label className="block font-bold !mb-2" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="input bg-transparent border border-black/50 rounded-md !mb-7 !p-3 w-full"
+            type="text"
+            name="email"
+            placeholder="email@example.com"
+          />
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+          <button
+            onClick={handleInput}
+            className="bg-red-700! text-white font-bold !py-3 rounded-lg w-full"
+          >
+            Send code
+          </button>
+        </div>
       </div>
     </div>
   );
