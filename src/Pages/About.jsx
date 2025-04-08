@@ -1,8 +1,6 @@
-import "./about.css";
 import Cart from "../Components/cart";
 import Footer from "../Components/footer";
 import Header from "../Components/header";
-import Products from "../Components/products";
 import { useTranslation } from "../TranslationContext";
 import { useEffect, useState } from "react";
 import { GiStarShuriken } from "react-icons/gi";
@@ -27,11 +25,11 @@ export default function About({ toggleCartVisibility, cart, totalQuantity }) {
         totalQuantity={totalQuantity}
       />
       <section
-        className="aboutcontent min-h-screen bg-cover bg-center"
+        className="min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/assets/9008 mockup.jpg')" }}
       >
-        <div className="aboutTitle !pt-100 !p-20">
-          <h1 className="abtit !text-5xl text-white lg:text-gray-800">
+        <div className="!pt-100 !p-20">
+          <h1 className="!text-5xl text-white lg:text-gray-800">
             {translations.abtit}
           </h1>
           <p className="!mt-14 text-lg max-w-3xl">{translations.intro}</p>

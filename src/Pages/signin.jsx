@@ -95,7 +95,7 @@ function Signin({ userType }) {
               Email
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+              className="input bg-transparent border border-black/50 rounded-md !mb-5 !p-3 w-full"
               type="text"
               name="email"
             />
@@ -103,11 +103,17 @@ function Signin({ userType }) {
               Password
             </label>
             <input
-              className="input bg-transparent border border-black/50 rounded-md mb-5 p-3 w-full"
+              className="input bg-transparent border border-black/50 rounded-md !mb-1 !p-3 w-full"
               type="text"
               name="password"
             />
             {error && <p className="error">{error}</p>}
+            <Link
+              to={"/forgot-password"}
+              className="block text-xs !mb-5 text-right hover:text-red-500"
+            >
+              Forgot password?
+            </Link>
             <button
               type="submit"
               className="!bg-red-700 text-white font-bold !py-3 rounded-lg w-full cursor-pointer"
@@ -115,11 +121,6 @@ function Signin({ userType }) {
               Sign in
             </button>
           </form>
-          <div className="forgotpass w-full !mt-4">
-            <a href="" onClick={() => navigate("/forgot-password")}>
-              Forgot your password?
-            </a>
-          </div>
           <div className="navto w-full flex gap-4 !mt-1">
             <h5>Don't have an Account? </h5>
             <p

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./checkout.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Header from "../Components/header";
+import { IoCartOutline } from "react-icons/io5";
 
-export default function Checkout() {
+export default function Checkout({ toggleCartVisibility, totalQuantity }) {
   const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const location = useLocation();
@@ -42,7 +43,7 @@ export default function Checkout() {
     }
   };
 
-  const fetchDefaultAddress = async () => {
+  /*   const fetchDefaultAddress = async () => {
     try {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("userId");
@@ -96,7 +97,7 @@ export default function Checkout() {
 
   useEffect(() => {
     fetchDefaultAddress();
-  }, []);
+  }, []); */
 
   useEffect(() => {
     if (
@@ -175,16 +176,22 @@ export default function Checkout() {
   };
 
   return (
-    <div className="checkout-container">
-      <h2 className="title">Checkout</h2>
-      <div className="checkrow">
-        <div className="col-75">
-          <div className="checkcontainer">
-            <form onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="col-50">
-                  <h3>Shipping Address</h3>
-                  <label>Full Name</label>
+    <>
+      <Header
+        toggleCartVisibility={toggleCartVisibility}
+        cart={cart}
+        totalQuantity={totalQuantity}
+      />
+      <div className="lg:p-8! !p-4">
+        <h2 className="font-bold text-md! sm:text-lg! md:text-xl! lg:text-3xl! !p-2 lg:p-5! !mb-4">
+          Checkout
+        </h2>
+        <div className="lg:flex">
+          <div className="lg:p-5! lg:w-2/3">
+            <div className="flex flex-col lg:gap-10">
+              <div className="lg:flex gap-5">
+                <div className="flex flex-col">
+                  <label className="!p-2 !mb-1 font-bold">Full Name</label>
                   <input
                     type="text"
                     name="firstname"
@@ -192,8 +199,11 @@ export default function Checkout() {
                     onChange={handleChange}
                     placeholder="John M. Doe"
                     required
+                    className="border-b-1! border-gray-500! rounded-sm !p-2 lg:w-xs !mb-2"
                   />
-                  <label>Email</label>
+                </div>
+                <div className="flex flex-col">
+                  <label className="!p-2 !mb-1 font-bold">Email</label>
                   <input
                     type="text"
                     name="email"
@@ -201,8 +211,13 @@ export default function Checkout() {
                     onChange={handleChange}
                     placeholder="john@example.com"
                     required
+                    className="border-b-1! border-gray-500! rounded-sm !p-2 lg:w-xs !mb-2"
                   />
-                  <label>Address</label>
+                </div>
+              </div>
+              <div className="lg:flex gap-5">
+                <div className="flex flex-col">
+                  <label className="!p-2 !mb-1 font-bold">Address</label>
                   <input
                     type="text"
                     name="address"
@@ -210,32 +225,61 @@ export default function Checkout() {
                     onChange={handleChange}
                     placeholder="542 W. 15th Street"
                     required
+                    className="border-b-1! border-gray-500! rounded-sm !p-2 lg:w-xs !mb-3"
                   />
-                  <div className="row">
-                    <div className="col-50">
-                      <label>Country</label>
-                      <input
-                        type="text"
-                        name="city"
-                        value={formData.country}
-                        onChange={handleChange}
-                        placeholder="New York"
-                        required
-                      />
-                    </div>
-                    <div className="col-50">
-                      <label>City</label>
-                      <input
-                        type="text"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleChange}
-                        placeholder="New York"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <label>District</label>
+                </div>
+                <div className="flex flex-col">
+                  <label className="!p-2 !mb-1 font-bold">Building no</label>
+                  <input
+                    type="text"
+                    name="bulding"
+                    value={formData.building}
+                    onChange={handleChange}
+                    placeholder="10"
+                    required
+                    className="border-b-1! border-gray-500! rounded-sm !p-2 lg:w-xs !mb-3"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="!p-2 !mb-1 font-bold">Apartment no</label>
+                  <input
+                    type="text"
+                    name="apartment"
+                    value={formData.apartment}
+                    onChange={handleChange}
+                    placeholder="6"
+                    required
+                    className="border-b-1! border-gray-500! rounded-sm !p-2 lg:w-xs"
+                  />
+                </div>
+              </div>
+              <div className="lg:flex gap-5">
+                <div className="flex flex-col">
+                  <label className="!p-2 !mb-1 font-bold">Country</label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.country}
+                    onChange={handleChange}
+                    placeholder="New York"
+                    required
+                    className="border-b-1! border-gray-500! rounded-sm !p-2 lg:w-xs"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="!p-2 !mb-1 font-bold">City</label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    placeholder="New York"
+                    required
+                    className="border-b-1! border-gray-500! rounded-sm !p-2 lg:w-xs"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="!p-2 !mb-1 font-bold">District</label>
                   <input
                     type="text"
                     name="state"
@@ -243,56 +287,19 @@ export default function Checkout() {
                     onChange={handleChange}
                     placeholder="NY"
                     required
+                    className="border-b-1! border-gray-500! rounded-sm !p-2 lg:w-xs"
                   />
-                  <div className="row">
-                    <div className="col-50">
-                      <label>Building no</label>
-                      <input
-                        type="text"
-                        name="bulding"
-                        value={formData.building}
-                        onChange={handleChange}
-                        placeholder="10"
-                        required
-                      />
-                    </div>
-                    <div className="col-50">
-                      <label>Apartment no</label>
-                      <input
-                        type="text"
-                        name="apartment"
-                        value={formData.apartment}
-                        onChange={handleChange}
-                        placeholder="6"
-                        required
-                      />
-                    </div>
-                  </div>
                 </div>
               </div>
-              <label>
-                <input
-                  type="checkbox"
-                  name="sameadr"
-                  checked={formData.sameadr}
-                  onChange={handleChange}
-                />{" "}
-                Shipping address same as billing
-              </label>
-              <button type="submit" className="btn">
-                Continue to checkout
-              </button>
-            </form>
+            </div>
           </div>
-        </div>
-
-        <div className="col-25">
-          <div className="ordcontainer">
-            <div className="ordertop">
-              <h4>Order Summary</h4>
+          <div className="flex flex-col !p-4 gap-3 lg:w-1/3">
+            <div className="flex justify-between items-center">
+              <h4 className="font-bold text-sm! lg:text-lg!">Order Summary</h4>
               <h4>
-                <span className="">
-                  <i className="fa fa-shopping-cart"></i> <b>{cart.length}</b>
+                <span className="flex items-center gap-1 text-sm! lg:text-lg!">
+                  <IoCartOutline />
+                  <b>{cart.length}</b>
                 </span>
               </h4>
             </div>
@@ -306,16 +313,37 @@ export default function Checkout() {
               </p>
             ))}
 
-            <hr className="checkhr" />
-            <p>
-              Total{" "}
+            <hr className="solid min-h-0.5 bg-black/50" />
+            <div className="flex justify-between items-center !mt-1">
+              <p className="">Subtotal</p>
               <span className="price">
                 <b>${totalPrice.toFixed(2)}</b>
               </span>
-            </p>
+            </div>
+            <div className="flex justify-between items-center !my-1">
+              <p className="">Shipping</p>
+              <span className="price">
+                <b>${totalPrice.toFixed(2)}</b>
+              </span>
+            </div>
+            <hr className="solid min-h-0.5 bg-black/20" />
+
+            <div className="flex justify-between items-center">
+              <p className="text-black/80! text-lg">Total</p>
+              <span className="price text-lg">
+                <b>${totalPrice.toFixed(2)}</b>
+              </span>
+            </div>
+            <button
+              type="submit"
+              className="!py-3 w-full !mt-8 bg-red-300! rounded-md text-white hover:bg-red-500!"
+              onClick={handleSubmit}
+            >
+              Checkout
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTranslation } from "../TranslationContext";
-import "./footer.css";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Footer() {
@@ -39,14 +38,20 @@ export default function Footer() {
             </li>
 
             <li>
-              <Link className="text-gray-700 transition hover:text-gray-700/75">
+              <Link
+                to={"/paintings"}
+                className="text-gray-700 transition hover:text-gray-700/75"
+              >
                 {" "}
                 {translations.paintings}{" "}
               </Link>
             </li>
 
             <li>
-              <Link className="text-gray-700 transition hover:text-gray-700/75">
+              <Link
+                to={"/curtains"}
+                className="text-gray-700 transition hover:text-gray-700/75"
+              >
                 {" "}
                 {translations.curtains}{" "}
               </Link>

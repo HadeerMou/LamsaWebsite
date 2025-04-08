@@ -1,312 +1,107 @@
-import React, { useEffect, useState } from "react";
-import "./profile.css";
+import React from "react";
 import Header from "../Components/header";
-import Products from "../Components/products";
-import Footer from "../Components/footer";
-import { useTranslation } from "../TranslationContext";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import useOrders from "../Hooks/useOrders";
-import useProducts from "../Hooks/useProducts";
-import { useCurrency } from "../CurrencyContext";
 
-function Profile({
-  toggleCartVisibility,
-  toggleProductsVisibility,
-  cart,
-  showProducts,
-  totalQuantity,
-}) {
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
+function Profile2({ toggleCartVisibility, cart, totalQuantity }) {
+  const user = {
+    name: "John Doe",
+    email: "johndoe@example.com",
+    phone: "+1234567890",
+    address: "123 Main Street, City, Country",
+  };
 
-  const { translations } = useTranslation();
-  const [visibleDiv, setVisibleDiv] = useState("first"); // "first" or "second"
-  const [userData, setUserData] = useState(null);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-  const [userAddress, setUserAddress] = useState(null);
-  const [selectedOrder, setSelectedOrder] = useState(null); // Store selected order
-  const { products, fetchProductDetails } = useProducts();
-  const { orders, fetchOrders } = useOrders();
-  const { selectedCurrency, convertAmount } = useCurrency();
-  const [locationNames, setLocationNames] = useState({
-    city: "",
-    district: "",
-    country: "",
-  });
-
-  useEffect(() => {
-    const fetchLocationNames = async () => {
-      if (userAddress) {
-        try {
-          const { cityId, districtId, countryId } = userAddress;
-
-          const requests = [];
-
-          if (cityId) {
-            requests.push(
-              axios
-                .get(`${API_BASE_URL}/cities/${cityId}`)
-                .then((res) => ({ city: res.data.name }))
-            );
-          }
-          if (districtId) {
-            requests.push(
-              axios
-                .get(`${API_BASE_URL}/district/${districtId}`)
-                .then((res) => ({ district: res.data.districtName }))
-            );
-          }
-          if (countryId) {
-            requests.push(
-              axios
-                .get(`${API_BASE_URL}/country/${countryId}`)
-                .then((res) => ({ country: res.data.name }))
-            );
-          }
-          // Wait for all API calls to resolve
-          const results = await Promise.all(requests);
-          // Merge results into locationNames state
-          setLocationNames((prevState) => ({
-            ...prevState,
-            ...Object.assign({}, ...results),
-          }));
-        } catch (error) {
-          console.error("Error fetching location names:", error);
-        }
-      }
-    };
-
-    fetchLocationNames();
-  }, [userAddress]); // Runs when userAddress changes
-
-  // Fetch product details when orders are available
-  useEffect(() => {
-    if (Array.isArray(orders) && orders.length > 0) {
-      fetchProductDetails(orders);
-    }
-  }, [orders]);
-  // Retrieve address from local storage on component mount
-  useEffect(() => {
-    const storedAddress = JSON.parse(localStorage.getItem("userAddress"));
-    if (storedAddress) {
-      setUserAddress(storedAddress);
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(`${API_BASE_URL}/users/profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`, // Attach token for authentication
-          },
-        });
-        setUserData(response.data.data);
-      } catch (err) {
-        setError("Failed to load profile.");
-        console.error("Profile Fetch Error:", err);
-      }
-    };
-    fetchProfile();
-    fetchOrders(); // Fetch orders when the profile is loaded
-    fetchProductDetails();
-  }, []);
-
+  const orders = [
+    { id: 1, date: "2025-04-01", total: "$120.00", status: "Delivered" },
+    { id: 2, date: "2025-03-15", total: "$80.00", status: "Processing" },
+    { id: 3, date: "2025-03-01", total: "$45.00", status: "Cancelled" },
+  ];
   return (
     <>
       <Header
-        toggleProductsVisibility={toggleProductsVisibility}
         toggleCartVisibility={toggleCartVisibility}
         cart={cart}
         totalQuantity={totalQuantity}
       />
-      <Products showProducts={showProducts} />
-      <div class="mycontent">
-        <h1 className="welcome">{translations.welcome}</h1>
-      </div>
-      <div className="profile">
-        <div class="left">
-          <div class="lists">
-            <div class="username">
-              <h2>{userData?.username}</h2>
-              <h3>{userData?.email}</h3>
+      <div className="min-h-screen bg-gray-100">
+        {/* Header */}
+        <div className="bg-gray-800 text-white !py-6 !px-4 text-center">
+          <h1 className="text-2xl font-bold">My Profile</h1>
+        </div>
+        {/* Profile Info */}
+        <div className="max-w-4xl !mx-auto bg-white shadow-md rounded-lg !mt-6 !p-6">
+          <h2 className="text-xl font-bold !mb-4">Account Information</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <p className="text-gray-600! font-medium">Name</p>
+              <p className="text-gray-800!">{user.name}</p>
             </div>
-            <div class="options">
-              <ul>
-                <li
-                  onClick={() => setVisibleDiv("first")}
-                  className="personalinfo"
-                >
-                  {translations.personalinfo}
-                </li>
-                {/* <li className="billing">{translations.billing}</li> */}
-                <li
-                  onClick={() => setVisibleDiv("second")}
-                  className="ordersname"
-                >
-                  {translations.ordersname}
-                </li>
-              </ul>
+            <div>
+              <p className="text-gray-600! font-medium">Email</p>
+              <p className="text-gray-800!">{user.email}</p>
             </div>
+            <div>
+              <p className="text-gray-600! font-medium">Phone</p>
+              <p className="text-gray-800!">{user.phone}</p>
+            </div>
+            <div>
+              <p className="text-gray-600! font-medium">Address</p>
+              <p className="text-gray-800!">{user.address}</p>
+            </div>
+          </div>
+          <button className="!mt-6 bg-blue-600! text-white !py-2 !px-4 rounded hover:bg-blue-700!">
+            Edit Profile
+          </button>
+        </div>
+        {/* Order History */}
+        <div className="max-w-4xl !mx-auto bg-white shadow-md rounded-lg !mt-6 !p-6">
+          <h2 className="text-xl font-bold !mb-4">Order History</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="!py-2 px-4">Order ID</th>
+                  <th className="!py-2 px-4">Date</th>
+                  <th className="!py-2 px-4">Total</th>
+                  <th className="!py-2 px-4">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map((order) => (
+                  <tr key={order.id} className="!border-t">
+                    <td className="!py-2 !px-4">{order.id}</td>
+                    <td className="!py-2 !px-4">{order.date}</td>
+                    <td className="!py-2 !px-4">{order.total}</td>
+                    <td
+                      className={`!py-2 !px-4 ${
+                        order.status === "Delivered"
+                          ? "text-green-600"
+                          : order.status === "Processing"
+                          ? "text-yellow-600"
+                          : "text-red-600"
+                      }`}
+                    >
+                      {order.status}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
-        <div
-          className="persinfo"
-          style={{ display: visibleDiv === "first" ? "block" : "none" }}
-        >
-          <div className="infos">
-            <h5 className="username">{translations.username}</h5>
-            <p className="profdata">
-              {userData?.username}
-              <i class="fa-solid fa-pen-to-square"></i>
-            </p>
-          </div>
-          <div className="infos">
-            <h5 className="email">{translations.email}</h5>
-            <p className="profdata">
-              {userData?.email}
-              <i class="fa-solid fa-pen-to-square"></i>
-            </p>
-          </div>
-          <div className="infos">
-            <h5 className="number">{translations.number}</h5>
-            <p className="profdata">
-              {userData?.phone}
-              <i class="fa-solid fa-pen-to-square"></i>
-            </p>
-          </div>
-          <div className="passinfo">
-            <h5 className="password">{translations.password}</h5>
-            <button
-              className="changpass"
-              onClick={() => navigate("/forgot-password")}
-            >
-              {translations.changpass}
+        {/* Account Settings */}
+        <div className="max-w-4xl !mx-auto bg-white shadow-md rounded-lg !mt-6 !p-6">
+          <h2 className="text-xl font-bold !mb-4">Account Settings</h2>
+          <div className="flex flex-col gap-4">
+            <button className="!bg-gray-800 text-white !py-2 !px-4 rounded hover:bg-gray-900! cursor-pointer">
+              Change Password
+            </button>
+            <button className="!bg-red-600 text-white !py-2 !px-4 rounded hover:bg-red-700! cursor-pointer">
+              Delete Account
             </button>
           </div>
-          <div className="infos">
-            <h5 className="address">{translations.address}</h5>
-            <p className="addp">
-              <i class="fa-solid fa-location-dot"></i>
-              {userAddress
-                ? `${userAddress.streetName}, ${locationNames.district}, ${locationNames.city}, ${locationNames.country}`
-                : "No address found"}
-              <i
-                class="fa-solid fa-pen-to-square"
-                onClick={() => navigate("/profile/address")}
-              ></i>
-            </p>
-            <a className="all" onClick={() => navigate("/profile/addresses")}>
-              {translations.alladdresses}
-            </a>
-          </div>
-        </div>
-        <div
-          className="ordersinfo"
-          style={{ display: visibleDiv === "second" ? "block" : "none" }}
-        >
-          <div className="head">
-            <h1 className="ordersname">Your Orders</h1>
-          </div>
-
-          {orders.length === 0 ? (
-            <p>No orders found.</p>
-          ) : (
-            orders.map((order) => {
-              const totalOrderPrice = convertAmount(
-                order.orderItems.reduce(
-                  (sum, item) => sum + item.price * item.quantity,
-                  0
-                )
-              );
-              return (
-                <div
-                  key={order.id}
-                  className="ordersContainer"
-                  onClick={() => setSelectedOrder(order)}
-                >
-                  <div className="orderno">
-                    <h3 className="text-muted">Order #{order.id}</h3>
-                  </div>
-                  <div className="orderprice">
-                    <p className="text-muted">
-                      Total: {selectedCurrency === "egp" ? "£" : "$"}{" "}
-                      {totalOrderPrice.toFixed(2)}
-                    </p>
-                  </div>
-                  <div className="no">
-                    <p className="text-muted">
-                      Time: {new Date(order.createdAt).toLocaleString()}
-                    </p>
-                  </div>
-                </div>
-              );
-            })
-          )}
-
-          {selectedOrder && (
-            <div className="orderDetails">
-              <h2>Order #{selectedOrder.id} Details</h2>
-              <p>
-                <strong>Total Price:</strong>{" "}
-                {selectedCurrency === "egp" ? "£" : "$"}
-                {convertAmount(
-                  selectedOrder?.orderItems?.reduce(
-                    (sum, item) =>
-                      sum + (item.price || 0) * (item.quantity || 0),
-                    0
-                  )
-                ).toFixed(2)}
-              </p>
-              <p>
-                <strong>Order Date:</strong>{" "}
-                {new Date(selectedOrder.createdAt).toLocaleString()}
-              </p>
-              {selectedOrder.orderItems.map((item) => {
-                const product = products[item.productId];
-                const imageUrl = product?.productImages?.[0]?.imagePath;
-                return (
-                  <div key={item.id} className="orderItem">
-                    {imageUrl ? (
-                      <img
-                        src={`https://${imageUrl}`}
-                        alt={product?.name}
-                        className="product-img"
-                      />
-                    ) : (
-                      <p>No image available</p>
-                    )}
-                    <div>
-                      <p>
-                        <strong>Product:</strong> {product?.name || "Unknown"}
-                      </p>
-                      <p>
-                        <strong>Quantity:</strong> {item.quantity}
-                      </p>
-                      <p>
-                        <strong>Price:</strong>{" "}
-                        {selectedCurrency === "egp" ? "£" : "$"}{" "}
-                        {convertAmount(item.price).toFixed(2)}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-              <button
-                onClick={() => setSelectedOrder(null)}
-                className="close-btn"
-              >
-                Close
-              </button>
-            </div>
-          )}
         </div>
       </div>
-      <Footer />
     </>
   );
 }
 
-export default Profile;
+export default Profile2;

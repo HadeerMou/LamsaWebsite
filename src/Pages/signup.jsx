@@ -124,7 +124,7 @@ function Signup({ handleVerifyOtp }) {
               Already have an account?{" "}
               <span
                 className="text-red-500 cursor-pointer font-bold"
-                onClick={() => navigate("/user-login")}
+                onClick={() => navigate("/login")}
               >
                 Login
               </span>

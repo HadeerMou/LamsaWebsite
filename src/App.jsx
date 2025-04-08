@@ -15,7 +15,6 @@ import DshMessages from "./Dashboard/DshMessages";
 import DshOrders from "./Dashboard/DshOrders";
 import "./Dashboard/dash.css";
 import Dashboard from "./Dashboard/dashboard";
-import Profile from "./Pages/profile";
 import Signin from "./Pages/signin";
 import Signup from "./Pages/signup";
 import { CurrencyProvider } from "./CurrencyContext";
@@ -30,10 +29,11 @@ import axios from "axios";
 import AdminPage from "./Dashboard/admins";
 import ShippingFees from "./Dashboard/ShippingFees";
 import ProductDetails from "./Dashboard/ProductDetails";
-import CategoryPage from "./Pages/categoryPage";
 import OrderSuccess from "./Pages/OrderSuccess";
 import UserAddresses from "./Pages/userAddresses";
-import Profile2 from "./Pages/profile2";
+import Profile from "./Pages/profile";
+import Curtains from "./Pages/Curtains";
+import Paintings from "./Pages/Paintings";
 
 function App() {
   const API_BASE_URL = import.meta.env.VITE_API_URL;
@@ -131,9 +131,7 @@ function App() {
     <CurrencyProvider>
       <TranslationProvider>
         <Routes>
-          <Route path="/profile2" element={<Profile2 />} />
-          {/*           <Route path="/landing" element={<Landing />} />
-           */}{" "}
+          <Route path="/profile" element={<Profile />} />
           <Route
             path="/"
             element={
@@ -168,10 +166,20 @@ function App() {
           />
           <Route path="/checkout" element={<Checkout />} />
           <Route
-            path="/categorypage"
+            path="/curtains"
             element={
-              <CategoryPage
-                products={products}
+              <Curtains
+                cart={cart}
+                toggleCartVisibility={toggleCartVisibility}
+                addToCart={addToCart}
+                totalQuantity={totalQuantity}
+              />
+            }
+          />
+          <Route
+            path="/paintings"
+            element={
+              <Paintings
                 cart={cart}
                 toggleCartVisibility={toggleCartVisibility}
                 addToCart={addToCart}
@@ -186,17 +194,6 @@ function App() {
                 cart={cart}
                 toggleCartVisibility={toggleCartVisibility}
                 addToCart={addToCart}
-                totalQuantity={totalQuantity}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                toggleCartVisibility={toggleCartVisibility}
-                cart={cart}
-                products={products}
                 totalQuantity={totalQuantity}
               />
             }

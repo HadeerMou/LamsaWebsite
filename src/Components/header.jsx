@@ -59,7 +59,7 @@ function Header({ toggleCartVisibility, totalQuantity }) {
   // Handle Logout
   const handleLogout = () => {
     localStorage.removeItem("token"); // Clear token
-    navigate("/user-login"); // Redirect to login page
+    navigate("/login"); // Redirect to login page
   };
   let [open, setOpen] = useState(false);
 

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./productView.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "../TranslationContext";
 import Footer from "../Components/footer";
 import Header from "../Components/header";
-import Products from "../Components/products";
 import { useCurrency } from "../CurrencyContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -51,7 +49,7 @@ function ProductView({
 
     return (
       <Link to={`/product/${product.id}`} key={product.id}>
-        <div className="rproduct">
+        <div className="rproduct flex-shrink-0 w-[300px] snap-start p-4">
           <div className="img">
             <img
               src={
@@ -62,15 +60,20 @@ function ProductView({
               alt={product.name}
               onMouseEnter={() => setHoveredProduct(product.id)}
               onMouseLeave={() => setHoveredProduct(null)}
+              className="w-full h-auto rounded-md"
             />
           </div>
-          <div className="content">
-            <h4>{product.name}</h4>
-            <p className="desc">{product.description}</p>
-            <p className="price">{product.price} EGP</p>
-            <div className="productIcon">
+          <div className="content max-w-[250px] mx-auto mt-2">
+            <h4 className="font-bold text-lg">{product.name}</h4>
+            <p className="desc text-sm text-gray-600 max-w-[150px]">
+              {product.description}
+            </p>
+            <p className="price text-red-500 font-bold mt-2">
+              {product.price} EGP
+            </p>
+            <div className="productIcon bg-gray-700 text-white rounded-full p-2 mt-2 mx-auto">
               <i
-                className="bi bi-cart-plus"
+                className="bi bi-cart-plus text-lg"
                 onClick={() => addToCart(product)}
               ></i>
             </div>
@@ -227,41 +230,50 @@ function ProductView({
   return (
     <>
       <Header
-        toggleProductsVisibility={toggleProductsVisibility}
         toggleCartVisibility={toggleCartVisibility}
         cart={cart}
         totalQuantity={totalQuantity}
       />
-      <Products showProducts={showProducts} />
-      <div className="topcontainer">
-        <div className="im">
+      <div className="flex flex-col lg:flex-row justify-between w-[95%] mx-auto px-5 pb-5">
+        {/* Small Images */}
+        <div className="flex flex-row lg:flex-col gap-4">
           {productImages.map((img, index) => (
             <img
               key={index}
               src={img}
               alt="Product"
               onClick={() => setBigImage(img)}
+              className="w-[100px] h-[100px] lg:w-[180px] lg:h-[180px] mt-4 cursor-pointer border-2 border-transparent hover:border-gray-400"
             />
           ))}
         </div>
+        {/* Big Image */}
         <div
-          class="bigImg"
+          className="flex justify-center items-center w-full lg:w-[60%] mt-4 lg:mt-0"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <img src={bigImage} alt={product.name} />
+          <img
+            src={bigImage}
+            alt={product.name}
+            className="w-full h-[500px] lg:h-[900px] object-contain"
+          />
         </div>
-        <div class="des">
-          <div class="line">
-            <h4 className="prname">{product.name}</h4>
+        {/* Description */}
+        <div className="flex flex-col font-medium text-lg max-w-[400px] !m-4 lg:mt-0">
+          <div className="">
+            <h4 className="font-bold">{product.name}</h4>
           </div>
-          <p className="prdes">{product.description}</p>
-          <p class="price">
+          <p className="text-sm !mt-2">{product.description}</p>
+          <p className="font-bold text-xl !mt-4">
             {selectedCurrency === "egp" ? "E£" : "$"}
             {convertAmount(product.price).toFixed(2)}
           </p>
-          <div class="productviewbuttom">
-            <button className="addtocart" onClick={() => addToCart(product)}>
+          <div className="!mt-8 justify-end flex">
+            <button
+              className="w-[100px] lg:w-[250px] h-[40px] lg:h-[50px] !bg-green-900 text-white rounded-full text-sm lg:text-base font-bold hover:bg-gray-700"
+              onClick={() => addToCart(product)}
+            >
               {translations.addtocart}
             </button>
           </div>
@@ -269,12 +281,14 @@ function ProductView({
       </div>
       <hr className="hr" />
       {/* Related Products Section */}
-      <div className="related">
-        <section className="product-conatiner">
-          <div className="title">
-            <h1 className="relatedname">{translations.relatedname}</h1>
+      <div className="">
+        <section className="max-w-full">
+          <div className="">
+            <h1 className="text-lg sm:text-xl lg:text-3xl font-bold text-center !py-10">
+              {translations.relatedname}
+            </h1>
           </div>
-          <div className="productss">
+          <div className="flex gap-5 overflow-x-auto whitespace-nowrap px-5 py-2 scroll-snap-x snap-mandatory">
             {relatedProducts.length > 0 ? (
               relatedProducts.map(renderProductCard)
             ) : (
@@ -285,12 +299,15 @@ function ProductView({
       </div>
 
       {/* Recommended Products Section */}
-      <div className="related">
-        <section className="product-conatiner">
-          <div className="title">
-            <h1 className="recommendedname">{translations.recommendedname}</h1>
+
+      <div className="!mb-8">
+        <section className="max-w-full">
+          <div className="">
+            <h1 className="text-lg sm:text-2xl lg:text-3xl text-center font-bold px-5 py-10">
+              {translations.recommendedname}
+            </h1>
           </div>
-          <div className="productss">
+          <div className="productss flex gap-5 overflow-x-auto whitespace-nowrap px-5 py-2 scroll-snap-x snap-mandatory">
             {recommendedProducts.length > 0 ? (
               recommendedProducts.map(renderProductCard)
             ) : (

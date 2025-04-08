@@ -3,16 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "../Components/header";
 import Footer from "../Components/footer";
-import Products from "../Components/products";
 import { useTranslation } from "../TranslationContext";
 
-function UserAddresses({
-  toggleCartVisibility,
-  toggleProductsVisibility,
-  cart,
-  totalQuantity,
-  showProducts,
-}) {
+function UserAddresses({ toggleCartVisibility, cart, totalQuantity }) {
   const API_BASE_URL = import.meta.env.VITE_API_URL;
   const [userAddresses, setUserAddresses] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -268,12 +261,10 @@ function UserAddresses({
   return (
     <>
       <Header
-        toggleProductsVisibility={toggleProductsVisibility}
         toggleCartVisibility={toggleCartVisibility}
         cart={cart}
         totalQuantity={totalQuantity}
       />
-      <Products showProducts={showProducts} />
 
       <div className="container mt-4">
         <h1 className="mb-4">{translations.alladdresses}</h1>

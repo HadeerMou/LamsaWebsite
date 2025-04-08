@@ -1,4 +1,3 @@
-import "./productList.css";
 import { useTranslation } from "../TranslationContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
@@ -60,8 +59,6 @@ function ProductList({ addToCart }) {
               };
             })
           );
-
-          console.log("Products with Images:", productsWithImages);
           setProduct(productsWithImages);
         }
       } catch (error) {
@@ -77,7 +74,6 @@ function ProductList({ addToCart }) {
   if (isLoading) {
     return <p>Loading products...</p>;
   }
-  console.log("addToCart in ProductList:", addToCart);
 
   return (
     <div className="product-list">

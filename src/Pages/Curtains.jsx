@@ -1,16 +1,9 @@
 import React from "react";
 import Header from "../Components/header";
 import Footer from "../Components/footer";
-import Products from "../Components/products";
 import ProductList from "../Components/ProductList";
 
-function CategoryPage({
-  toggleCartVisibility,
-  cart,
-  products,
-  addToCart,
-  totalQuantity,
-}) {
+function Curtains({ toggleCartVisibility, cart, addToCart, totalQuantity }) {
   return (
     <>
       <Header
@@ -24,4 +17,4 @@ function CategoryPage({
   );
 }
 
-export default CategoryPage;
+export default Curtains;

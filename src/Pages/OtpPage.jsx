@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import logo from "../logo.png";
-import "./OtpPage.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -123,7 +122,7 @@ function OtpPage() {
         <p className="text-center text-md !mb-6">
           Please Enter the 6-digit code we sent to {email}
         </p>
-        <div className="codeRow">
+        <div className="flex items-center gap-3 !my-3 !mx-auto">
           {otp.map((digit, index) => (
             <input
               key={index}
@@ -135,7 +134,7 @@ function OtpPage() {
               ref={(el) => (inputsRef.current[index] = el)}
               onChange={(e) => handleChange(e, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className="w-full h-14 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
+              className="w-full h-14 text-center border-b-2 border-gray-300 focus:outline-none! focus:border-black!"
               placeholder="-"
             />
           ))}

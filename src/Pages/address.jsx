@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./checkout.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Address({ addressId }) {

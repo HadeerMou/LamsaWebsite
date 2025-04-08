@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import logo from "../logo.png";
 
 function EmailInput() {
   const API_BASE_URL = import.meta.env.VITE_API_URL;
